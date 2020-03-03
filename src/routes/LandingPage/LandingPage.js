@@ -49,7 +49,7 @@ class LandingPage extends Component {
                 <div>
                   <FontAwesomeIcon icon={faHeartBroken} size="3x" />
                   <h3>UnLike </h3>
-                  <p>Feeling Fickle? Unlike and don't think twice!</p>
+                  <p>Feeling Fickle? Unlike and go take a nap!</p>
                 </div>
               </div>
             </section>

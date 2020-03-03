@@ -9,8 +9,8 @@
 }
 
 .logo {
-  width: 200px;
-  height: 200px;
+  width: 100px;
+  height: 100px;
 }
 
 .bg-light {
@@ -67,6 +67,8 @@ a {
 
   .logo {
     float: left;
-    margin-top: 32px;
+    margin-top: 22px;
+    height: 140px;
+    width: 140px;
   }
 }
