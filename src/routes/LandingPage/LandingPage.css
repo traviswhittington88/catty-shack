@@ -6,12 +6,14 @@ main {
   background: rgba(0,0,0,0.9);
   margin: 0;
   color: #fff;
+  margin-top: 50px;  /* change to 0 padding at 500px */
 }
 
 .showcase::after {
   content: '';
   height: 100vh;
   width: 100%;
+  padding-top: 150px;  /*this enhances pic */
   background-image: url(../../images/showcase.jpg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -71,6 +73,7 @@ main {
 
 .cred-wrapper {
   display: flex;
+  padding-top: 50px;
 }
 
 .default-login {
@@ -151,10 +154,7 @@ p + p {
   }
 
   .content .logo {
-    margin-top: 25%;
-  }
-
-  .content .logo {
+    margin-top: 30%;
     height: 250px;
     width: 300px;
   
@@ -183,13 +183,17 @@ p + p {
   }
 
   .content {
-    top: 0;
-  }
+    top: 4;  /* was 0 */
+  } 
 }
 
 @media screen and (min-width: 500px) {
+  main {
+    margin: 0;
+  }
+
   .cred-wrapper {
-    margin-top: 25px;
+    margin-top: 225px;
   }
 
   .default-login {

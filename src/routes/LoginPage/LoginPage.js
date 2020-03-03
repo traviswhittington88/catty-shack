@@ -1,13 +1,36 @@
 import React, { Component } from 'react'
+import './LoginPage.css'
+import LoginForm from '../../components/LoginForm/LoginForm'
+//import Nav from '../../components/Nav/Nav'
+//import Footer from '../../components/Footer/Footer'
 
-class LoginPage extends Component {
-  render() {
-    return (
-      <div>
-        <h1>LoginPage</h1>
-      </div>
-    )
+export default class LoginPage extends Component {
+  static defaultProps = {
+    location: {},
+    history: {
+      push: () => {},
+    },
   }
-}
 
-export default LoginPage
+  handleLoginSuccess = () => {
+    const { history } = this.props
+    history.push('/homepage')
+  }
+
+    render() {
+      return (
+        <>
+          <main role="main">
+            <section className='login-page'>
+              <header role="banner" className="header">
+                <h2>Login</h2>
+              </header>
+              <div className="login-content">
+              <LoginForm onLoginSuccess={this.handleLoginSuccess} />
+              </div>
+            </section>
+          </main>
+        </>
+      )
+    }
+}

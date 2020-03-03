@@ -46,7 +46,7 @@ export default class Nav extends Component {
         <nav role="navigation" className="nav bg-light">
           <div className="item name">
             <Link
-              to='/homepage'
+              to='/home'
               className="title"
             >
               <img src={logo} alt="catty shack logo" className="logo"></img>

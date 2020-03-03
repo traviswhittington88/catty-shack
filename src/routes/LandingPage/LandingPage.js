@@ -4,11 +4,11 @@ import { faInfoCircle,  faPencilAlt, faComment, faHeart, faHeartBroken} from '@f
 import './LandingPage.css'
 import logo from '../../images/logo.png'
 import title from '../../images/title_white.png'
+import Nav from '../../components/Nav/Nav'
 
 class LandingPage extends Component {
   render() {
     return (
-      <div>
         <main role="main">
           <div className="landing-page">
             <header role="banner" className="showcase">
@@ -70,7 +70,6 @@ class LandingPage extends Component {
             </section>
           </div>
         </main>
-      </div>
     )
   }
 }
