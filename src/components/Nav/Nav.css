@@ -1,0 +1,72 @@
+.nav {
+  padding: 2% 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  text-align: center;
+}
+
+.logo {
+  width: 200px;
+  height: 200px;
+}
+
+.bg-light {
+  background: lightblue;
+  color: white;
+}
+
+.bg-dark {
+  background: #333;
+  color: #f4f4f4;
+}
+
+.item {
+  font-size: 1.2em;
+  text-align: center;
+  padding: 7px;
+}
+
+.signup, .login, .logout {
+  display: inline-block;
+}
+
+.title {
+  text-decoration: none;
+}
+
+.title > h3 {
+  margin: 5px 0px;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+
+@media screen and (min-width: 500px) {
+  .nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5% 0;
+    max-height: 100px;
+  }
+
+  .nav > .item {
+    flex: 1 1;
+  }
+
+  .nav > .name {
+    flex: 2 1 125px;
+  }
+
+  .logo {
+    float: left;
+    margin-top: 32px;
+  }
+}

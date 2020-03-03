@@ -1,0 +1,12 @@
+footer {
+padding: 1% 0;
+}
+
+footer p {
+  margin: 0 auto;
+}
+
+.bg-dark {
+  background: #333;
+  color: #f4f4f4;
+}
