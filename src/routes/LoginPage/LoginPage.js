@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './LoginPage.css'
 import LoginForm from '../../components/LoginForm/LoginForm'
-//import Nav from '../../components/Nav/Nav'
+import Nav from '../../components/Nav/Nav'
 //import Footer from '../../components/Footer/Footer'
 
 export default class LoginPage extends Component {
@@ -14,12 +14,13 @@ export default class LoginPage extends Component {
 
   handleLoginSuccess = () => {
     const { history } = this.props
-    history.push('/homepage')
+    history.push('/home')
   }
 
     render() {
       return (
         <>
+          <Nav />
           <main role="main">
             <section className='login-page'>
               <header role="banner" className="header">

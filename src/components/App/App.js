@@ -33,12 +33,11 @@ export default class App extends Component {
         <main className='App__main'>
         {this.state.hasError && <p className='errorText'>{this.state.err}</p>}
           <Router>
-            <Nav />
             <Switch>
               <Route exact path="/" component={LandingPage} />
               <Route exact path="/home" component={HomePage} />  {/* make private later */}
-              <PublicOnlyRoute exact path="/login" component={LoginPage} />
-              <PublicOnlyRoute exact path="/signup" component={SignupPage} />
+              <Route exact path="/login" component={LoginPage} />
+              <Route exact path="/signup" component={SignupPage} />
               <Route component={NotFoundPage} />
             </Switch>
             <Footer />

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import SignupForm from '../../components/SignupForm/SignupForm';
 import './SignupPage.css'
-//import Nav from '../../components/Nav/Nav'
+import Nav from '../../components/Nav/Nav'
 //import Footer from '../../components/Footer/Footer'
 
 
@@ -19,6 +19,7 @@ export default class SignupPage extends Component {
     render() {
       return (
         <>
+          <Nav />
           <main role="main">
             <section className='signup-page'>
               <header role="banner" className="signup-page-header">

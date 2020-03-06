@@ -9,6 +9,8 @@ import Nav from '../../components/Nav/Nav'
 class LandingPage extends Component {
   render() {
     return (
+      <>
+        <Nav />
         <main role="main">
           <div className="landing-page">
             <header role="banner" className="showcase">
@@ -70,6 +72,7 @@ class LandingPage extends Component {
             </section>
           </div>
         </main>
+    </>
     )
   }
 }

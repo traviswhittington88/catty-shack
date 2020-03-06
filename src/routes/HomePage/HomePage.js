@@ -1,13 +1,60 @@
 import React, { Component } from 'react'
+import Nav from '../../components/Nav/Nav'
+import Meow from '../../components/Meow/Meow'
+import TokenService from '../../services/token-service'
+import config from '../../config'
+import './HomePage.css'
 
-class HomePage extends Component {
-  render() {
-    return (
-      <div>
-        <h1>HomePage</h1>
-      </div>
-    )
+export default class HomePage extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      meows: null,
+      error: null
+    }
   }
-}
+  componentDidMount() {
+    fetch(`${config.API_ENDPOINT}api/meows`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`
+      }
+    })
+    .then(res => {
+      if(!res.ok) {
+        throw new Error(res.statusText)
+      }
+      return res.json()
+    })
+    .then(meows => {
+      this.setState({ meows })
+    })
+    .catch(err => { this.setState({ error: err.message })})
+      console.log(this.state.meows)
+    }
 
-export default HomePage
+    render() {
+        let recentMeowsMarkup = this.state.meows ? (
+          this.state.meows.map(meow => <Meow key={meow.meow_id} meow={meow} />)
+        ) : <p>Loading ...</p>
+        return (
+          <>
+            <Nav />
+              <main role="main">
+                <div className="homepage">
+                  <div className="container grid-2 center">
+                    <div className="meow-list">
+                      {recentMeowsMarkup}
+                    </div>
+                    <div>
+                      <p>Profile</p>
+                    </div>
+                  </div>
+                </div>
+              </main>
+          </>
+        )
+    }
+}

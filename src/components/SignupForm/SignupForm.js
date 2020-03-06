@@ -12,11 +12,10 @@ export default class SignupForm extends Component {
 
   handleSubmit = ev => {
     ev.preventDefault()
-    const { user_name, full_name, pseudonym, password } = ev.target
+    const { user_name, full_name, password } = ev.target
     const newUser = { 
       user_name: user_name.value,
       full_name: full_name.value,
-      pseudonym: pseudonym.value, 
       password: password.value, 
     }
 
@@ -25,7 +24,6 @@ export default class SignupForm extends Component {
     AuthApiService.postUser(newUser)
       .then(user => {
         full_name.value = ''
-        pseudonym.value = ''
         user_name.value = ''
         password.value = ''
         this.props.onSignupSuccess()
@@ -62,15 +60,6 @@ export default class SignupForm extends Component {
             type='text'
             required
             id='user_name'
-            className="input"
-          />
-        </div>
-        <div className='pseudonym'>
-          <label htmlFor='pseudonym' className="label">*Pseudonym</label>
-          <input
-            name='pseudonym'
-            type='text'
-            id='pseudonym'
             className="input"
           />
         </div>
