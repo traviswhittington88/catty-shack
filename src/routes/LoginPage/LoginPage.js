@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import AppContext from '../../contexts/appContext'
 import './LoginPage.css'
 import LoginForm from '../../components/LoginForm/LoginForm'
 import Nav from '../../components/Nav/Nav'
@@ -12,7 +13,10 @@ export default class LoginPage extends Component {
     },
   }
 
+  static contextType = AppContext;
+
   handleLoginSuccess = () => {
+    this.context.updateUserData()
     const { history } = this.props
     history.push('/home')
   }

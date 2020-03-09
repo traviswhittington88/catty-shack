@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
+import userContext from '../../contexts/appContext'
 import TokenService from '../../services/token-service'
 import AuthApiService from '../../services/auth-api-service'
 import './LoginForm.css'
+
 
 export default class LoginForm extends Component {
   static defaultProps = {
     onLoginSuccess: () => {}
   }
-
+  static contextType = userContext;
   state = { error: null }
 
   handleSubmitBasicAuth = ev => {
@@ -33,6 +35,7 @@ export default class LoginForm extends Component {
       password: password.value,
     })
       .then(res => {
+        console.log(res.data)
         user_name.value = ''
         password.value = ''
         TokenService.saveAuthToken(res.authToken)
@@ -43,10 +46,6 @@ export default class LoginForm extends Component {
         this.setState({ error: res.error })
       })
   } 
-
-  bypassLogin = ev => {
-    this.props.onLoginSuccess()
-  }
 
   render() {
     const { error } = this.state
