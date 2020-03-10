@@ -55,6 +55,7 @@ export default class App extends Component {
 
   render() {
     const contextValue = {
+      userData: this.state.userData,
       updateUserData: this.updateUserData
     }
     return (

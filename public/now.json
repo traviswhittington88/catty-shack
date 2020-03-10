@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "alias": "catty-shack-app",
+  "name": "catty-shack-app",
+  "routes": [
+      { "handle": "filesystem" },
+      { "src": "/.*", "dest": "/index.html" }
+  ]
+}

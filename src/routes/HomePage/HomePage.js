@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import AppContext from '../../contexts/appContext'
 import Nav from '../../components/Nav/Nav'
 import Meow from '../../components/Meow/Meow'
 import TokenService from '../../services/token-service'
@@ -14,6 +15,9 @@ export default class HomePage extends Component {
       error: null
     }
   }
+  
+  static contextType = AppContext;
+
   componentDidMount() {
     fetch(`${config.API_ENDPOINT}api/meows`, {
       method: 'GET',
@@ -40,21 +44,28 @@ export default class HomePage extends Component {
           this.state.meows.map(meow => <Meow key={meow.meow_id} meow={meow} />)
         ) : <p>Loading ...</p>
         return (
-          <>
-            <Nav />
-              <main role="main">
-                <div className="homepage">
-                  <div className="container grid-2 center">
-                    <div className="meow-list">
-                      {recentMeowsMarkup}
-                    </div>
-                    <div>
-                      <p>Profile</p>
-                    </div>
-                  </div>
-                </div>
-              </main>
-          </>
+          <AppContext.Consumer>
+            {(value => {
+              console.log(value)
+              return (
+                <>
+                  <Nav />
+                    <main role="main">
+                      <div className="homepage">
+                        <div className="container grid-2 center">
+                          <div className="meow-list">
+                            {recentMeowsMarkup}
+                          </div>
+                          <div>
+                            <p>Profile</p>
+                          </div>
+                        </div>
+                      </div>
+                    </main>
+                </>
+              )
+            })}
+          </AppContext.Consumer>
         )
     }
 }
