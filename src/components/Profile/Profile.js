@@ -87,7 +87,7 @@ export default class Profile extends Component {
             onChange={this.handleImageChange}
           />
           <div class="tooltip">
-          <span class="tooltiptext">Tooltip text</span>
+          <span class="tooltiptext">Edit profile picture</span>
             <IconButton
               onClick={this.handleEditPicture} 
               className="edit-image-button"
