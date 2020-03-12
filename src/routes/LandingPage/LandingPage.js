@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { FaBeer } from 'react-icons/fa';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle,  faPencilAlt, faComment, faHeart, faHeartBroken} from '@fortawesome/free-solid-svg-icons'
 import './LandingPage.css'

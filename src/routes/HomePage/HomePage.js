@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import AppContext from '../../contexts/appContext'
 import Nav from '../../components/Nav/Nav'
 import Meow from '../../components/Meow/Meow'
+import Profile from '../../components/Profile/Profile'
 import TokenService from '../../services/token-service'
 import config from '../../config'
 import './HomePage.css'
@@ -15,7 +16,7 @@ export default class HomePage extends Component {
       error: null
     }
   }
-  
+
   static contextType = AppContext;
 
   componentDidMount() {
@@ -57,7 +58,7 @@ export default class HomePage extends Component {
                             {recentMeowsMarkup}
                           </div>
                           <div>
-                            <p>Profile</p>
+                          <Profile userData={this.state.userData} />
                           </div>
                         </div>
                       </div>
