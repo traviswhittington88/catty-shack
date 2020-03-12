@@ -27,7 +27,10 @@ export default class Profile extends Component {
       },
       error: null
     }
+    
   }
+  static contextType = AppContext;
+
   componentDidMount() {
   fetch(`${config.API_ENDPOINT}api/users`, {
     method: 'GET',
@@ -58,11 +61,39 @@ export default class Profile extends Component {
   })
   .catch(err => { this.setState({ error: err.message })})
   }
-  static contextType = AppContext;
+
+  uploadImage = (formData) => {
+    console.log('reached upload image')
+    fetch(`${config.API_ENDPOINT}api/users/image`, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'authorization': `bearer ${TokenService.getAuthToken()}`,
+      }
+    })
+    .then(res => {
+      if (!res) {
+        throw new Error(res.statusText)
+      }
+      return res.json()
+    })
+    .then(userData => {
+      console.log(userData)
+      this.setState({ userData: {
+        user_image: userData.user_image
+      }
+      })
+    })
+    .catch(err => console.log(err));
+  }
 
   handleImageChange = (event) => {
     const image = event.target.files[0];
+    console.log(image, image.name)
     // send to server
+    const formData = new FormData()
+    formData.append('profileImage', image, image.name);
+    this.uploadImage(formData)
   }
 
   handleEditPicture = () => {

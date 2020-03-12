@@ -27,6 +27,7 @@ export default class App extends Component {
     }
   }
 
+
   updateUserData = () => {
     console.log('updateUserData called');
     fetch(`${config.API_ENDPOINT}api/users`, {
@@ -56,6 +57,7 @@ export default class App extends Component {
   render() {
     const contextValue = {
       userData: this.state.userData,
+      uploadImage: this.uploadImage,
       updateUserData: this.updateUserData
     }
     return (
