@@ -16,7 +16,7 @@ export default class LoginPage extends Component {
   static contextType = AppContext;
 
   handleLoginSuccess = () => {
-    this.context.updateUserData()
+    this.context.getUserData()
     const { history } = this.props
     history.push('/home')
   }

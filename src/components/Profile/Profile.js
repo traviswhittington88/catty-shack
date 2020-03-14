@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import EditDetails from '../../components/EditDetails/EditDetails'
 import AppContext from '../../contexts/appContext'
 import TokenService from '../../services/token-service'
 import dayjs from 'dayjs'
 import config from '../../config'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './Profile.css'
-import { FaTwitter } from 'react-icons/fa';
+//import { FaTwitter } from 'react-icons/fa';
 import { MdLocationOn, MdToday, MdLink, MdEdit} from 'react-icons/md';
 import IconButton from '@material-ui/core/IconButton'
 
 
 export default class Profile extends Component {
+  static contextType = AppContext;
   constructor(props) {
     super(props)
 
@@ -29,8 +31,7 @@ export default class Profile extends Component {
     }
     
   }
-  static contextType = AppContext;
-
+  
   componentDidMount() {
   fetch(`${config.API_ENDPOINT}api/users`, {
     method: 'GET',
@@ -108,7 +109,7 @@ export default class Profile extends Component {
         <div className="profile-card">
           <img 
             src={`http://localhost:8000/${userData.user_image}`} 
-            alt="profile picture" 
+            alt="profile" 
             className="profile-image"
           />
           <input 
@@ -117,8 +118,8 @@ export default class Profile extends Component {
             hidden="hidden"
             onChange={this.handleImageChange}
           />
-          <div class="tooltip">
-          <span class="tooltiptext">Edit profile picture</span>
+          <div className="tooltip">
+          <span className="tooltiptext">Edit profile picture</span>
             <IconButton
               onClick={this.handleEditPicture} 
               className="edit-image-button"
@@ -134,20 +135,11 @@ export default class Profile extends Component {
             </Link>
           </h2>
             <div className="profile-info">
-            {userData.bio && 
-              <p className="bio">
-                {userData.bio}
-              </p>
-            }
-              {/*<div>
-              <Link 
-                to='#'
-                alt="twitter logo" 
-                className="icon"
-              >
-                <FaTwitter/>
-              </Link>
-              </div> */}
+              {userData.bio && 
+                <p className="bio">
+                  {userData.bio}
+                </p>
+              }
               <div className="location">
               {userData.location && <><MdLocationOn /><span>{userData.location}</span></> }
               </div>
@@ -159,6 +151,7 @@ export default class Profile extends Component {
                 <MdToday />{' '}
                 <span>Joined {dayjs(userData.date_created).format('MMM YYYY')}</span>
               </div>
+              <EditDetails details={this.state.userData} />
             </div>
           <button className="contact-button">Contact</button>
         </div>

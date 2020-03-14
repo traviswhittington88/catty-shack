@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import { FaBeer } from 'react-icons/fa';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle,  faPencilAlt, faComment, faHeart, faHeartBroken} from '@fortawesome/free-solid-svg-icons'
 import './LandingPage.css'
-import logo from '../../images/logo.png'
 import title from '../../images/title_white.png'
 import Nav from '../../components/Nav/Nav'
 

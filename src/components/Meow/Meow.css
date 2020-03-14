@@ -18,8 +18,8 @@
 /* Add some padding insid the card container */
 
 .meow-container {
+  margin: 0 auto;
   padding: 2px 16px;
-  
 }
 
 .meow-image {

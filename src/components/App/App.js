@@ -21,15 +21,21 @@ export default class App extends Component {
     super(props)
 
     this.state = {
-      userData : {},
+      userData : {
+          id: null, 
+          user_name: null, 
+          date_created: null, 
+          user_image: null, 
+          bio: null, 
+          location: null, 
+          website: null
+      },
       hasError: false,
       error: { message: null }
     }
   }
 
-
-  updateUserData = () => {
-    console.log('updateUserData called');
+  getUserData = () => {
     fetch(`${config.API_ENDPOINT}api/users`, {
       method: 'GET',
       headers: {
@@ -47,6 +53,9 @@ export default class App extends Component {
       this.setState({ userData })
       console.log(this.state.userData)
     })
+    .catch(error => {
+      this.setState({ error })
+    })
   }
  
   static getDerivedStateFromError(error) {
@@ -58,7 +67,7 @@ export default class App extends Component {
     const contextValue = {
       userData: this.state.userData,
       uploadImage: this.uploadImage,
-      updateUserData: this.updateUserData
+      getUserData: this.getUserData
     }
     return (
       <AppContext.Provider value={contextValue}>
