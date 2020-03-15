@@ -21,39 +21,25 @@ class Meow extends Component {
   static contextType = AppContext;
 
   likedMeow = () => {
-
+    if (
+      this.props.user.likes && 
+      this.props.user.likes.find(
+        (like) => like.meow_id === this.props.meow.meow_id
+      )
+    ) return true;
+    else return false;
   }
-
 
   componentDidMount() {
-    fetch(`${config.API_ENDPOINT}api/meows/${this.props.meow.meow_id}/likes`, {
-      method: 'GET',
-      headers: {
-        'content-type': 'application/json',
-        'authorization': `bearer ${TokenService.getAuthToken()}`
-      }
-    })
-    .then(res => {
-      if (!res.ok) {
-        throw new Error(res.statusText)
-      }
-      return res.json()
-    })
-    .then(likes => {
-      this.setState({likes})
-    })
-    .catch(error => {
-      this.setState({ error })
-    })
+    this.context.getMeows();
   }
 
-
   likeMeow = () => {
-    this.props.likeMeow(this.props.meow.meow_id);
+    this.context.likeMeow(this.props.meow.meow_id);
   }
 
   unlikeMeow = () => {
-    this.props.unlikeMeow(this.props.meow.meow_id);
+    this.context.unlikeMeow(this.props.meow.meow_id);
   }
 
   render() {
