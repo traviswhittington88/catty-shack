@@ -13,9 +13,6 @@ import NotFoundPage from '../../routes/NotFoundPage/NotFoundPage'
 import './App.css';
 import config from '../../config';
 
-// services 
-import UserService from '../../services/userService'
-
 export default class App extends Component {
   constructor(props) {
     super(props)
@@ -28,7 +25,9 @@ export default class App extends Component {
         user_image: '', 
         bio: '', 
         location: '',
-        website: ''
+        website: '',
+        likes: [],
+        notifications: [],
       },
       meows: [],
       meow: [],
@@ -67,9 +66,9 @@ export default class App extends Component {
   .catch(err => console.log(err));
 }
 
+
   getUser = () => {
-    console.log('getUserCalled')
-  fetch(`${config.API_ENDPOINT}api/users`, {
+  fetch(`${config.API_ENDPOINT}api/users/details`, {
     method: 'GET',
     headers: {
       'content-type': 'application/json',
@@ -83,18 +82,27 @@ export default class App extends Component {
     return res.json()
   })
   .then(userData => {
+    console.log(userData)
+    const { 
+      credentials: 
+        { id, user_name, date_created, user_image, bio, location, website}, 
+      likes,
+      notifications,
+    } = userData
     this.setState(
       { user: 
-        { id: userData.user.id, 
-          user_name: userData.user.user_name,
-          date_created: userData.user.date_created,
-          user_image: userData.user.user_image,
-          bio: userData.user.bio,
-          location: userData.user.location,
-          website: userData.user.website
+        { id, 
+          user_name,
+          date_created,
+          user_image,
+          bio,
+          location,
+          website,
+          likes,
+          notifications
         } 
       }
-    )
+    ) 
   })
   .catch(err => { this.setState({ error: err.message })})
 }

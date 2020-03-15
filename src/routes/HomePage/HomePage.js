@@ -27,7 +27,7 @@ export default class HomePage extends Component {
           <AppContext.Consumer>
             {(value) => {        
               let recentMeowsMarkup = value.meows ? (
-              value.meows.map(meow => <Meow key={meow.meow_id} meow={meow} />)
+              value.meows.map(meow => <Meow key={meow.meow_id} meow={meow} user={value.userData} />)
               ) : <p>Loading ...</p>
 
               return (

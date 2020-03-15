@@ -49,7 +49,6 @@ export default class Profile extends Component {
     return (
       <AppContext.Consumer> 
         {(value)=> {
-          console.log('value:', value)
           return (
             <>
               <div className="profile-card">
