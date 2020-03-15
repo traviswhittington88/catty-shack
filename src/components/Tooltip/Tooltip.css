@@ -43,3 +43,53 @@
   visibility: visible;
   opacity: 1;
 }
+
+
+/***************For Navbar Tooltips/
+
+/* Tooltip container */
+.tooltipnav {
+  position: relative;
+  display: inline-block;
+  
+}
+/* Tooltip text */
+.tooltipnav .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0px;
+  border-radius: 6px;
+
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  top: 125%;
+  left: 50%;
+  margin-left: -60px;
+
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Tooltip arrow */
+.tooltipnav .tooltiptext::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #555 transparent; /*this creates the arrow effect */
+}
+
+/* Show tooltip text when you mouse over the tooltip container */
+.tooltipnav:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+  font-size: 14px;
+}

@@ -13,88 +13,31 @@ import IconButton from '@material-ui/core/IconButton'
 
 
 export default class Profile extends Component {
-  static contextType = AppContext;
+
   constructor(props) {
     super(props)
 
     this.state = {
-      userData: { 
-        id: null, 
-        user_name: null, 
-        date_created: null, 
-        user_image: null, 
-        bio: null, 
-        location: null, 
-        website: null
-      },
       error: null
     }
     
   }
-  
+  static contextType = AppContext;
+
   componentDidMount() {
-  fetch(`${config.API_ENDPOINT}api/users`, {
-    method: 'GET',
-    headers: {
-      'content-type': 'application/json',
-      'authorization': `bearer ${TokenService.getAuthToken()}`
-    }
-  })
-  .then(res => {
-    if(!res.ok) {
-      throw new Error(res.statusText)
-    }
-    return res.json()
-  })
-  .then(userData => {
-    this.setState(
-      { userData: 
-        { id: userData.user.id, 
-          user_name: userData.user.user_name,
-          date_created: userData.user.date_created,
-          user_image: userData.user.user_image,
-          bio: userData.user.bio,
-          location: userData.user.location,
-          website: userData.user.website
-        } 
-      }
-    )
-  })
-  .catch(err => { this.setState({ error: err.message })})
+  this.context.getUser();
   }
 
-  uploadImage = (formData) => {
-    console.log('reached upload image')
-    fetch(`${config.API_ENDPOINT}api/users/image`, {
-      method: 'POST',
-      body: formData,
-      headers: {
-        'authorization': `bearer ${TokenService.getAuthToken()}`,
-      }
-    })
-    .then(res => {
-      if (!res) {
-        throw new Error(res.statusText)
-      }
-      return res.json()
-    })
-    .then(userData => {
-      console.log(userData)
-      this.setState({ userData: {
-        user_image: userData.user_image
-      }
-      })
-    })
-    .catch(err => console.log(err));
+  handleUploadImage = (formData) => {
+    this.context.uploadImage(formData);
   }
 
   handleImageChange = (event) => {
     const image = event.target.files[0];
-    console.log(image, image.name)
     // send to server
     const formData = new FormData()
     formData.append('profileImage', image, image.name);
-    this.uploadImage(formData)
+    this.handleUploadImage(formData)
   }
 
   handleEditPicture = () => {
@@ -103,59 +46,65 @@ export default class Profile extends Component {
   }
 
   render() {
-    const { userData } = this.state;
     return (
-      <>
-        <div className="profile-card">
-          <img 
-            src={`http://localhost:8000/${userData.user_image}`} 
-            alt="profile" 
-            className="profile-image"
-          />
-          <input 
-            type="file" 
-            id="upload-image"
-            hidden="hidden"
-            onChange={this.handleImageChange}
-          />
-          <div className="tooltip">
-          <span className="tooltiptext">Edit profile picture</span>
-            <IconButton
-              onClick={this.handleEditPicture} 
-              className="edit-image-button"
-            >
-              <MdEdit />
-            </IconButton>
-          </div>
-          <h2>
-            <Link 
-              to={`/users/${userData.user_name}`}
-            >
-              @{userData.user_name}
-            </Link>
-          </h2>
-            <div className="profile-info">
-              {userData.bio && 
-                <p className="bio">
-                  {userData.bio}
-                </p>
-              }
-              <div className="location">
-              {userData.location && <><MdLocationOn /><span>{userData.location}</span></> }
+      <AppContext.Consumer> 
+        {(value)=> {
+          console.log('value:', value)
+          return (
+            <>
+              <div className="profile-card">
+                <img 
+                  src={`http://localhost:8000/${value.userData.user_image}`} 
+                  alt="profile" 
+                  className="profile-image"
+                />
+                <input 
+                  type="file" 
+                  id="upload-image"
+                  hidden="hidden"
+                  onChange={this.handleImageChange}
+                />
+                <div className="tooltip">
+                <span className="tooltiptext">Edit profile picture</span>
+                  <IconButton
+                    onClick={this.handleEditPicture} 
+                    className="edit-image-button"
+                  >
+                    <MdEdit />
+                  </IconButton>
+                </div>
+                <h2>
+                  <Link 
+                    to={`/users/${value.userData.user_name}`}
+                  >
+                    @{value.userData.user_name}
+                  </Link>
+                </h2>
+                  <div className="profile-info">
+                    {value.userData.bio && 
+                      <p className="bio">
+                        {value.userData.bio}
+                      </p>
+                    }
+                    <div className="location">
+                    {value.userData.location && <><MdLocationOn /><span>{value.userData.location}</span></> }
+                    </div>
+                    <div className="website">
+                    {value.userData.website && <Link to={`${value.userData.website}`}><MdLink />{value.userData.website}</Link>}
+                    </div>
+                    <hr />         
+                    <div className="joined">
+                      <MdToday />{' '}
+                      <span>Joined {dayjs(value.userData.date_created).format('MMM YYYY')}</span>
+                    </div>
+                    <EditDetails details={value.userData} />
+                  </div>
+                <button className="contact-button">Contact</button>
               </div>
-              <div className="website">
-              {userData.website && <Link to={`${userData.website}`}><MdLink />{userData.website}</Link>}
-              </div>
-              <hr />         
-              <div className="joined">
-                <MdToday />{' '}
-                <span>Joined {dayjs(userData.date_created).format('MMM YYYY')}</span>
-              </div>
-              <EditDetails details={this.state.userData} />
-            </div>
-          <button className="contact-button">Contact</button>
-        </div>
-      </>
+            </>
+          )
+        }}
+      </AppContext.Consumer>
     )
   }
 }

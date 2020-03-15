@@ -21,22 +21,116 @@ export default class App extends Component {
     super(props)
 
     this.state = {
-      userData : {
-          id: null, 
-          user_name: null, 
-          date_created: null, 
-          user_image: null, 
-          bio: null, 
-          location: null, 
-          website: null
+      user: { 
+        id: '', 
+        user_name: '', 
+        date_created: '', 
+        user_image: '', 
+        bio: '', 
+        location: '',
+        website: ''
       },
+      meows: [],
+      meow: [],
       hasError: false,
       error: { message: null }
     }
   }
 
-  getUserData = () => {
-    fetch(`${config.API_ENDPOINT}api/users`, {
+  updloadImage = (formData) => {
+  fetch(`${config.API_ENDPOINT}api/users/image`, {
+    method: 'POST',
+    body: formData,
+    headers: {
+      'authorization': `bearer ${TokenService.getAuthToken()}`,
+    }
+  })
+  .then(res => {
+    if (!res) {
+      throw new Error(res.statusText)
+    }
+    return res.json()
+  })
+  .then(user => {
+    this.setState({ 
+      UserService: {
+      id: user.id, 
+      user_name: user.user_name,
+      date_created: user.date_created,
+      user_image: user.user_image,
+      bio: user.bio,
+      location: user.location,
+      website: user.website
+    }
+    })
+  })
+  .catch(err => console.log(err));
+}
+
+  getUser = () => {
+    console.log('getUserCalled')
+  fetch(`${config.API_ENDPOINT}api/users`, {
+    method: 'GET',
+    headers: {
+      'content-type': 'application/json',
+      'authorization': `bearer ${TokenService.getAuthToken()}`
+    }
+  })
+  .then(res => {
+    if(!res.ok) {
+      throw new Error(res.statusText)
+    }
+    return res.json()
+  })
+  .then(userData => {
+    this.setState(
+      { user: 
+        { id: userData.user.id, 
+          user_name: userData.user.user_name,
+          date_created: userData.user.date_created,
+          user_image: userData.user.user_image,
+          bio: userData.user.bio,
+          location: userData.user.location,
+          website: userData.user.website
+        } 
+      }
+    )
+  })
+  .catch(err => { this.setState({ error: err.message })})
+}
+
+editUserDetails = (details) => {
+  fetch(`${config.API_ENDPOINT}api/users/details`, {
+    method: 'POST',
+    body: JSON.stringify(details),
+    headers: {
+      'content-type': 'application/json',
+      'authorization': `bearer ${TokenService.getAuthToken()}`
+    }
+  })
+  .then(res => {
+    if (!res.ok) {
+      throw new Error(res.statusText)
+    }
+    return res.json()
+  })
+  .then(user => {
+    this.setState({ 
+      user: {
+        id: user.id, 
+        user_name: user.user_name,
+        date_created: user.date_created,
+        user_image: user.user_image,
+        bio: user.bio,
+        location: user.location,
+        website: user.website
+      }
+    })
+  })
+}
+
+  setMeows = () => {
+    fetch(`${config.API_ENDPOINT}api/meows`, {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
@@ -49,9 +143,98 @@ export default class App extends Component {
       }
       return res.json()
     })
-    .then(userData=> {
-      this.setState({ userData })
-      console.log(this.state.userData)
+    .then(meows => {
+      this.setState({ meows })
+    })
+    .catch(error => {
+      this.setState({ error })
+    })
+  }
+
+  setMeow = (meow_id) => {
+    fetch(`${config.API_ENDPOINT}api/meows/${meow_id}`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`,
+      }
+    })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error(res.statusText)
+      }
+      return res.json()
+    })
+    .then(meow => {
+      this.setState({ meow })
+    })
+    .catch(error => {
+      this.setState({ error })
+    })
+  }
+
+  likeMeow = (meow_id) => {
+    fetch(`${config.API_ENDPOINT}api/meows/${meow_id}/like`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`
+      }
+    })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error(res.statusText)
+      }
+      return res.json()
+    })
+    .then(meow => {
+      let index = this.state.meows.findIndex(meow => meow.meow_id === meow.meow_id)
+      this.setState(this.state.meows[index] === meow)
+    })
+    .catch(error => {
+      this.setState({ error })
+    })
+  }
+
+  unlikeMeow = (meow_id) => {
+    fetch(`${config.API_ENDPOINT}api/meows/${meow_id}/unlike`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`
+      }
+    })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error(res.statusText)
+      }
+      return res.json()
+    })
+    .then(meow => {
+      let index = this.state.meows.findIndex(meow => meow.meow_id === meow.meow_id)
+      this.setState(this.state.meows[index] === meow)
+    })
+    .catch(error => {
+      this.setState({ error })
+    })
+  }
+
+  getMeows = () => {
+    fetch(`${config.API_ENDPOINT}api/meows`, {
+      method: 'GET', 
+      headers: {
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`
+      }
+    })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error(res.statusText) 
+      }
+      return res.json()
+    })
+    .then(meows => {
+      this.setState({ meows })
     })
     .catch(error => {
       this.setState({ error })
@@ -65,7 +248,13 @@ export default class App extends Component {
 
   render() {
     const contextValue = {
-      userData: this.state.userData,
+      meows: this.state.meows,
+      getMeows: this.getMeows,
+      getUser: this.getUser,
+      editUserDetails: this.editUserDetails,
+      likeMeow: this.likeMeow,
+      unlikeMeow: this.unlikeMeow,
+      userData: this.state.user,
       uploadImage: this.uploadImage,
       getUserData: this.getUserData
     }

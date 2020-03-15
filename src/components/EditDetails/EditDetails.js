@@ -38,8 +38,10 @@ export class EditDetails extends Component {
     }));
   }
 
-  handleChange = () => {
-
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
   }
 
   handleSubmit = () => {
@@ -56,68 +58,75 @@ export class EditDetails extends Component {
   render() {
     console.log(this.state.bio)
     return (
-    <>
-      <div className="tooltip">
-        <span className="tooltiptext">Edit user details</span>
-        <IconButton
-          onClick={this.toggleDialog} 
-          className="edit-user-details-button"
-        >
-          <MdEdit />
-        </IconButton>
-      </div>
-      <div id="dialog">
-        <div>
-          { this.state.open && 
-            <form>
-              <TextField
-                name="bio"
-                type="text"
-                label="bio"
-                multiline
-                rows="3"
-                placeholder="A short bio about yourself"
-                className="textfield"
-                value={this.state.bio}
-                onChange={this.handleChange}
-                fullWidth
-              />
-              <TextField
-                name="website"
-                type="text"
-                label="website"
-                placeholder="Your website"
-                className="textfield"
-                value={this.state.website}
-                onChange={this.handleChange}
-                fullWidth
-              /> 
-              <TextField
-                name="location"
-                type="text"
-                label="location"
-                placeholder="Where you live"
-                className="textfield"
-                value={this.state.location}
-                onChange={this.handleChange}
-                fullWidth
-              />
-              <button 
-              onClick={this.toggleDialog}
+    <AppContext.Consumer>
+      {(value) => {
+        return (
+        <>
+          <div className="tooltip">
+            <span className="tooltiptext">Edit user details</span>
+            <IconButton
+              onClick={this.toggleDialog} 
+              className="edit-user-details-button"
             >
-              Cancel
-            </button>
-            <button 
-              onClick={this.handleSubmit}
-            >
-              Save
-            </button>
-            </form>
-            
-          }
-        </div>
-      </div>
-    </>
+              <MdEdit />
+            </IconButton>
+          </div>
+          <div id="dialog" aria-labelledby="form-dialog-title">
+            <div id="dialog-content">
+              { this.state.open &&
+              <>
+                <form>
+                  <TextField
+                    name="bio"
+                    type="text"
+                    label="Bio"
+                    multiline
+                    rows="3"
+                    placeholder="A short bio about yourself"
+                    className="textfield"
+                    value={this.state.bio}
+                    onChange={this.handleChange}
+                    fullWidth
+                  />
+                  <TextField
+                    name="website"
+                    type="text"
+                    label="Website"
+                    placeholder="Your website"
+                    className="textfield"
+                    value={this.state.website}
+                    onChange={this.handleChange}
+                    fullWidth
+                  /> 
+                  <TextField
+                    name="location"
+                    type="text"
+                    label="Location"
+                    placeholder="Where you live"
+                    className="textfield"
+                    value={this.state.location}
+                    onChange={this.handleChange}
+                    fullWidth
+                  />
+                </form> 
+                 <button 
+                 onClick={this.toggleDialog}
+               >
+                 Cancel
+               </button>
+               <button 
+                 onClick={this.handleSubmit}
+               >
+                 Save
+               </button>
+              </>
+              }
+            </div>
+          </div>
+        </>
+        )
+        }}
+      </AppContext.Consumer>
     )
   }
 }

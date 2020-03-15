@@ -12,42 +12,24 @@ export default class HomePage extends Component {
     super(props)
 
     this.state = {
-      meows: null,
       error: null
     }
   }
 
   static contextType = AppContext;
 
-  componentDidMount() {
-    fetch(`${config.API_ENDPOINT}api/meows`, {
-      method: 'GET',
-      headers: {
-        'content-type': 'application/json',
-        'authorization': `bearer ${TokenService.getAuthToken()}`
-      }
-    })
-    .then(res => {
-      if(!res.ok) {
-        throw new Error(res.statusText)
-      }
-      return res.json()
-    })
-    .then(meows => {
-      this.setState({ meows })
-    })
-    .catch(err => { this.setState({ error: err.message })})
-      console.log(this.state.meows)
+  componentDidMount() { 
+     this.context.getMeows();
     }
 
     render() {
-        let recentMeowsMarkup = this.state.meows ? (
-          this.state.meows.map(meow => <Meow key={meow.meow_id} meow={meow} />)
-        ) : <p>Loading ...</p>
         return (
           <AppContext.Consumer>
-            {(value => {
-              console.log(value)
+            {(value) => {        
+              let recentMeowsMarkup = value.meows ? (
+              value.meows.map(meow => <Meow key={meow.meow_id} meow={meow} />)
+              ) : <p>Loading ...</p>
+
               return (
                 <>
                   <Nav />
@@ -65,7 +47,7 @@ export default class HomePage extends Component {
                     </main>
                 </>
               )
-            })}
+            }}
           </AppContext.Consumer>
         )
     }
