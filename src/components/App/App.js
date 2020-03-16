@@ -306,6 +306,7 @@ editUserDetails = (details) => {
       }
       return res.json()
     })
+    .catch(error => this.setState({ error }))
   
   }
  
@@ -318,6 +319,7 @@ editUserDetails = (details) => {
     const contextValue = {
       meows: this.state.meows,
       getMeows: this.getMeows,
+      deleteMeow: this.deleteMeow,
       getUser: this.getUser,
       editUserDetails: this.editUserDetails,
       likeMeow: this.likeMeow,

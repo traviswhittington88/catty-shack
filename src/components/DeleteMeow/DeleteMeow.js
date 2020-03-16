@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import AppContext from '../../contexts/appContext'
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -6,6 +7,12 @@ import DialogActions from '@material-ui/core/DialogActions';
 import { AiOutlineDelete } from 'react-icons/ai';
 import MyButton from '../MyButton/MyButton';
 
+const styles = {
+  deleteButton: {
+    position: 'absolute',
+    left: '80%'
+  }
+}
 
 export default class DeleteMeow extends Component {
   constructor(props) {
@@ -15,6 +22,8 @@ export default class DeleteMeow extends Component {
   state = {
     open: false,
   }
+
+  static contextType = AppContext;
   
   handleOpen = () => {
     this.setState({ open: true })
@@ -23,14 +32,13 @@ export default class DeleteMeow extends Component {
     this.setState({ open: false })
   }
   deleteMeow = () => {
-    this.props.deleteMeow(this.props.meow_id)
+    this.context.deleteMeow(this.props.meow_id)
     this.setState({ open: false })
   }
   render() {
   return (
     <>
-      <MyButton 
-        tip="Delete Meow" 
+      <MyButton  
         onClick={this.handleOpen}
         className="deleteButton"
       >
