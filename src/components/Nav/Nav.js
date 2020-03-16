@@ -4,7 +4,8 @@ import TokenService from '../../services/token-service'
 import MyButton from '../MyButton/MyButton'
 import './Nav.css'
 import logo from '../../images/logo.png'
-import { MdAdd, MdNotifications } from 'react-icons/md';
+import { MdNotifications } from 'react-icons/md';
+import PostMeow from '../PostMeow/PostMeow';
 
 
 export default class Nav extends Component {
@@ -15,9 +16,7 @@ export default class Nav extends Component {
   renderLogoutLink() {
     return (
       <>
-        <MyButton tip="Post A Meow!" tipClassName='tooltipnav'>
-          <MdAdd />
-        </MyButton>
+        <PostMeow />
         <MyButton tip="Meowifications" tipClassName='tooltipnav'>
           <MdNotifications />
         </MyButton>

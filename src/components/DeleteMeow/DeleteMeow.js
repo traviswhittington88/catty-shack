@@ -41,6 +41,8 @@ export default class DeleteMeow extends Component {
       <MyButton  
         onClick={this.handleOpen}
         className="deleteButton"
+        tip="Delete Meow!" 
+        tipClassName='tooltip'
       >
         <AiOutlineDelete />
       </MyButton>

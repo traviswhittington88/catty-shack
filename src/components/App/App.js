@@ -309,6 +309,30 @@ editUserDetails = (details) => {
     .catch(error => this.setState({ error }))
   
   }
+
+  postMeow = (meow) => {
+    // post meow to meows table in db
+    fetch(`${config.API_ENDPOINT}api/meows/${meow}`, {
+      method: 'POST',
+      body: JSON.stringify(meow),
+      headers: {
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`,
+      }
+    })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error(res.statusText)
+      }
+      return res.json()
+    })
+    .then(meow => {
+      // add meow to meows array in state
+      let newMeows = this.state.meows;
+      newMeows.push(meow)
+      this.setState({ meows: newMeows })
+    })
+  }
  
   static getDerivedStateFromError(error) {
     console.error(error)
@@ -320,6 +344,7 @@ editUserDetails = (details) => {
       meows: this.state.meows,
       getMeows: this.getMeows,
       deleteMeow: this.deleteMeow,
+      postMeow: this.postMeow,
       getUser: this.getUser,
       editUserDetails: this.editUserDetails,
       likeMeow: this.likeMeow,

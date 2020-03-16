@@ -3,6 +3,7 @@ import React from 'react'
 const AppContext = React.createContext({
   getMeows: () => {},
   deleteMeow: () => {},
+  postMeow: () => {},
   getUser: () => {},
   getLikes: () => {},
   likeMeow: () => {},
