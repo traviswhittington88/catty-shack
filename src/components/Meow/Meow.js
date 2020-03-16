@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import AppContext from '../../contexts/appContext';
-import config from '../../config'
-import TokenService from '../../services/token-service'
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import './Meow.css';
 import MyButton from '../MyButton/MyButton';
 import { MdChat, MdFavorite, MdFavoriteBorder } from 'react-icons/md';
+import DeleteMeow from '../DeleteMeow/DeleteMeow';
 
 class Meow extends Component {
   constructor(props) {
@@ -15,12 +13,14 @@ class Meow extends Component {
 
     this.state = {
       likes: '',
+      liked: false,
       error: null,
     }
   }
   static contextType = AppContext;
 
   likedMeow = () => {
+    console.log(this.props.user.likes)
     if (
       this.props.user.likes && 
       this.props.user.likes.find(
@@ -30,16 +30,14 @@ class Meow extends Component {
     else return false;
   }
 
-  componentDidMount() {
-    this.context.getMeows();
-  }
-
   likeMeow = () => {
-    this.context.likeMeow(this.props.meow.meow_id);
+    console.log('likeMeowCalled')
+    this.context.likeMeow(this.props.meow_id);
   }
 
   unlikeMeow = () => {
-    this.context.unlikeMeow(this.props.meow.meow_id);
+    console.log('unlikeMeow called')
+    this.context.unlikeMeow(this.props.meow_id);
   }
 
   render() {
@@ -48,11 +46,11 @@ class Meow extends Component {
     
     let likeButton = this.likedMeow() ? (
       <MyButton tip="Undo like" tipClassName='tooltipnav' onClick={this.unlikeMeow}>
-        <MdFavorite color="primary" />
+        <MdFavorite />
       </MyButton>
     ) : (
       <MyButton tip="Like" tipClassName='tooltipnav' onClick={this.likeMeow}>
-        <MdFavoriteBorder color="primary" />
+        <MdFavoriteBorder />
       </MyButton>
     ) 
 
@@ -70,6 +68,9 @@ class Meow extends Component {
           </MyButton>
           <span>{commentCount} Comments</span>
         </div>
+        { userHandle === this.props.user.user_name  && 
+          <DeleteMeow meow_id={meow_id} />
+        }
       </div>
     )
   }

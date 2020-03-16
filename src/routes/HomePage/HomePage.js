@@ -10,24 +10,22 @@ import './HomePage.css'
 export default class HomePage extends Component {
   constructor(props) {
     super(props)
-
-    this.state = {
-      error: null
-    }
   }
 
   static contextType = AppContext;
 
+
+
   componentDidMount() { 
      this.context.getMeows();
-    }
+  }
 
     render() {
         return (
           <AppContext.Consumer>
-            {(value) => {        
+            {(value) => {     
               let recentMeowsMarkup = value.meows ? (
-              value.meows.map(meow => <Meow key={meow.meow_id} meow={meow} user={value.userData} />)
+              value.meows.map(meow => <Meow key={meow.meow_id} meow_id={meow.meow_id} meow={meow} user={value.user} />)
               ) : <p>Loading ...</p>
 
               return (
@@ -40,7 +38,7 @@ export default class HomePage extends Component {
                             {recentMeowsMarkup}
                           </div>
                           <div>
-                          <Profile userData={this.state.userData} />
+                          <Profile user={value.user} />
                           </div>
                         </div>
                       </div>

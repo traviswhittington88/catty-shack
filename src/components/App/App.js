@@ -12,6 +12,7 @@ import LandingPage from '../../routes/LandingPage/LandingPage'
 import NotFoundPage from '../../routes/NotFoundPage/NotFoundPage'
 import './App.css';
 import config from '../../config';
+import { MdWork } from 'react-icons/md';
 
 export default class App extends Component {
   constructor(props) {
@@ -181,7 +182,19 @@ editUserDetails = (details) => {
     })
   }
 
+
   likeMeow = (meow_id) => {
+    const { meows } = this.state
+    // Add Like to likes array
+    const newLike = { id: null, user_name: this.state.user.user_name, meow_id: meow_id }
+    this.state.user.likes.push(newLike);
+    // Create a new meows array from state, increment the likeCunt on the meow that was liked and replace with old meows array
+    const index = this.state.meows.findIndex(meow => meow.meow_id === meow_id)
+    let newMeows = this.state.meows
+    newMeows[index].likeCount++
+    this.setState({ meows: newMeows })
+
+    // add the like to the meow in the db
     fetch(`${config.API_ENDPOINT}api/meows/${meow_id}/like`, {
       method: 'GET',
       headers: {
@@ -195,9 +208,10 @@ editUserDetails = (details) => {
       }
       return res.json()
     })
-    .then(meow => {
-      let index = this.state.meows.findIndex(meow => meow.meow_id === meow.meow_id)
-      this.setState(this.state.meows[index] === meow)
+    .then(resData => {
+      let index = this.state.meows.findIndex(meow => meow.meow_id === resData.meow_id)
+      this.setState(this.state.meows[index] === resData)
+    
     })
     .catch(error => {
       this.setState({ error })
@@ -205,6 +219,19 @@ editUserDetails = (details) => {
   }
 
   unlikeMeow = (meow_id) => {
+    // find the index of the meow to be unliked
+    let index = this.state.meows.findIndex(meow => meow.meow_id === meow_id);
+    // decrement the likeCount from the meow that was unliked and replace meows array 
+    const newMeows = this.state.meows
+    newMeows[index].likeCount--
+    this.setState({ meows: newMeows })
+    // remove the like from the likes array
+    let newUser = this.state.user
+    const newLikes = newUser.likes.filter(like => like.meow_id !== meow_id)
+    newUser.likes = newLikes
+    this.setState({ user: newUser }) 
+
+    // remove the like from the likes table in the db
     fetch(`${config.API_ENDPOINT}api/meows/${meow_id}/unlike`, {
       method: 'GET',
       headers: {
@@ -248,6 +275,27 @@ editUserDetails = (details) => {
       this.setState({ error })
     })
   }
+
+  deleteMeow = (meow_id) => {
+    // delete meow from state
+    const newMeows = this.state.meows.filter(meow => meow.meow_id !== meow_id)
+    this.setState({ meows: newMeows })
+    // dete meow from db
+    fetch(`${config.API_ENDPOINT}api/meows/${meow_id}`, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`,
+      }
+    })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error(res.statusText) 
+      }
+      return res.json()
+    })
+  
+  }
  
   static getDerivedStateFromError(error) {
     console.error(error)
@@ -262,7 +310,9 @@ editUserDetails = (details) => {
       editUserDetails: this.editUserDetails,
       likeMeow: this.likeMeow,
       unlikeMeow: this.unlikeMeow,
-      userData: this.state.user,
+      setMeows: this.setMeows,
+      setMeow: this.setMeow,
+      user: this.state.user,
       uploadImage: this.uploadImage,
       getUserData: this.getUserData
     }

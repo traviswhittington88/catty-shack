@@ -53,7 +53,7 @@ export default class Profile extends Component {
             <>
               <div className="profile-card">
                 <img 
-                  src={`http://localhost:8000/${value.userData.user_image}`} 
+                  src={`http://localhost:8000/${value.user.user_image}`} 
                   alt="profile" 
                   className="profile-image"
                 />
@@ -74,29 +74,29 @@ export default class Profile extends Component {
                 </div>
                 <h2>
                   <Link 
-                    to={`/users/${value.userData.user_name}`}
+                    to={`/users/${value.user.user_name}`}
                   >
-                    @{value.userData.user_name}
+                    @{value.user.user_name}
                   </Link>
                 </h2>
                   <div className="profile-info">
-                    {value.userData.bio && 
+                    {value.user.bio && 
                       <p className="bio">
-                        {value.userData.bio}
+                        {value.user.bio}
                       </p>
                     }
                     <div className="location">
-                    {value.userData.location && <><MdLocationOn /><span>{value.userData.location}</span></> }
+                    {value.user.location && <><MdLocationOn /><span>{value.user.location}</span></> }
                     </div>
                     <div className="website">
-                    {value.userData.website && <Link to={`${value.userData.website}`}><MdLink />{value.userData.website}</Link>}
+                    {value.user.website && <Link to={`${value.user.website}`}><MdLink />{value.user.website}</Link>}
                     </div>
                     <hr />         
                     <div className="joined">
                       <MdToday />{' '}
-                      <span>Joined {dayjs(value.userData.date_created).format('MMM YYYY')}</span>
+                      <span>Joined {dayjs(value.user.date_created).format('MMM YYYY')}</span>
                     </div>
-                    <EditDetails details={value.userData} />
+                    <EditDetails details={value.user} />
                   </div>
                 <button className="contact-button">Contact</button>
               </div>
