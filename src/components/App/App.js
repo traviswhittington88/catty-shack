@@ -37,7 +37,7 @@ export default class App extends Component {
     }
   }
 
-  updloadImage = (formData) => {
+  uploadImage = (formData) => {
   fetch(`${config.API_ENDPOINT}api/users/image`, {
     method: 'POST',
     body: formData,
@@ -52,8 +52,21 @@ export default class App extends Component {
     return res.json()
   })
   .then(user => {
+    // update user image of meows owned by the user to reflect new image
+    console.log(user)
+    let newMeows = this.state.meows
+    newMeows.map(meow => {
+      if (meow.userHandle === user.user_name) {
+        meow.user_image = user.user_image;
+      }
+    })
+
+    console.log(newMeows)
+
+    //this.setState({ meows: newMeows })
+
     this.setState({ 
-      UserService: {
+      user: {
       id: user.id, 
       user_name: user.user_name,
       date_created: user.date_created,
@@ -83,7 +96,6 @@ export default class App extends Component {
     return res.json()
   })
   .then(userData => {
-    console.log(userData)
     const { 
       credentials: 
         { id, user_name, date_created, user_image, bio, location, website}, 
