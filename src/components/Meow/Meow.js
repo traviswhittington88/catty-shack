@@ -20,7 +20,6 @@ class Meow extends Component {
   static contextType = AppContext;
 
   likedMeow = () => {
-    console.log(this.props.user.likes)
     if (
       this.props.user.likes && 
       this.props.user.likes.find(
@@ -31,12 +30,10 @@ class Meow extends Component {
   }
 
   likeMeow = () => {
-    console.log('likeMeowCalled')
     this.context.likeMeow(this.props.meow_id);
   }
 
   unlikeMeow = () => {
-    console.log('unlikeMeow called')
     this.context.unlikeMeow(this.props.meow_id);
   }
 

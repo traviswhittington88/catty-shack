@@ -33,7 +33,8 @@ export default class App extends Component {
       meows: [],
       meow: [],
       hasError: false,
-      error: { message: null }
+      error: { message: null },
+      loading: false,
     }
   }
 
@@ -311,8 +312,11 @@ editUserDetails = (details) => {
   }
 
   postMeow = (meow) => {
+    console.log('postMeow called', meow)
+    // set loading to true to kick off loading graphic
+    this.setState({ loading: true })
     // post meow to meows table in db
-    fetch(`${config.API_ENDPOINT}api/meows/${meow}`, {
+    fetch(`${config.API_ENDPOINT}api/meows/`, {
       method: 'POST',
       body: JSON.stringify(meow),
       headers: {
@@ -327,9 +331,13 @@ editUserDetails = (details) => {
       return res.json()
     })
     .then(meow => {
+      console.log('meow returned from db', meow)
+      // we have data, stop loading graphic
+      this.setState({ loading: false })
       // add meow to meows array in state
       let newMeows = this.state.meows;
-      newMeows.push(meow)
+      newMeows.unshift(meow)
+      console.log('newMeows after adding the meow', newMeows)
       this.setState({ meows: newMeows })
     })
   }
@@ -341,6 +349,7 @@ editUserDetails = (details) => {
 
   render() {
     const contextValue = {
+      loading: this.state.loading,
       meows: this.state.meows,
       getMeows: this.getMeows,
       deleteMeow: this.deleteMeow,
