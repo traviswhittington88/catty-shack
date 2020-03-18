@@ -7,7 +7,7 @@ import MyButton from '../MyButton/MyButton'
 import TextField from '@material-ui/core/TextField'
 import './MeowDialog.css'
 // mui stuff
-import { MdClose, MdUnfoldMore } from 'react-icons/md';
+import { MdChat, MdClose, MdUnfoldMore } from 'react-icons/md';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -18,6 +18,7 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 // context
 import AppContext from '../../contexts/appContext';
+import LikeButton from '../LikeButton/LikeButton';
 
 const styles = theme =>  ({
   ...theme, 
@@ -78,6 +79,12 @@ export default class MeowDialog extends Component {
               <Typography variant="body1" >
                 {value.meow.body}
               </Typography>
+              <LikeButton meow_id={value.meow.meow_id} />
+              <span>{value.meow.likecount} likes</span>
+              <MyButton tip="Comment" tipClassName='tooltipnav'>
+                <MdChat color="primary" />
+              </MyButton>
+              <span>{value.meow.commentcount} comments</span>
             </Grid>
           </Grid>
           )

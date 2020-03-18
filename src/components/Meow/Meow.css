@@ -29,3 +29,8 @@
   object-fit: cover;
 }
 
+@media screen and (min-width: 500px) {
+  .meow-container {
+    min-width: 250px;
+  }
+}

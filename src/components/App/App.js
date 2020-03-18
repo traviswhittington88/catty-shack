@@ -246,6 +246,13 @@ editUserDetails = (details) => {
       return res.json()
     })
     .then(resData => {
+      // increment the likecount displayed on the meow dialog 
+      if (resData.meow_id === this.state.meow.meow_id) {
+        let newMeow = this.state.meow;
+        newMeow.likecount++
+        this.setState({ meow: newMeow })
+      }
+    // replace the meow in the meows array in state with the new meow object with incremented like count
       let index = this.state.meows.findIndex(meow => meow.meow_id === resData.meow_id)
       this.setState(this.state.meows[index] === resData)
     
@@ -283,6 +290,11 @@ editUserDetails = (details) => {
       return res.json()
     })
     .then(meow => {
+      if (meow.meow_id === this.state.meow.meow_id) {
+        let newMeow = this.state.meow;
+        newMeow.likecount--;
+        this.setState({ meow: newMeow })
+      }
       let index = this.state.meows.findIndex(meow => meow.meow_id === meow.meow_id)
       this.setState(this.state.meows[index] === meow)
     })

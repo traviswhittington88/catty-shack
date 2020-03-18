@@ -36,11 +36,11 @@ class Meow extends Component {
           <p>{dayjs(date_created).fromNow()}</p>
           <p>{body}</p>
           <LikeButton meow_id={meow_id}/>
-          <span>{likeCount} Likes</span>
-          <MyButton tip="comments">
+          <span>{likeCount} likes</span>
+          <MyButton tip="Comment" tipClassName='tooltipnav'>
             <MdChat color="primary" />
           </MyButton>
-          <span>{commentCount} Comments</span>
+          <span>{commentCount} comments</span>
         </div>
         { userHandle === this.props.user.user_name  && 
           <DeleteMeow meow_id={meow_id} />
