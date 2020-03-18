@@ -1,4 +1,5 @@
-.homepage, .container {
+.homepage,
+.container {
   min-height: 100vh;
   background: rgb(65, 169, 203);
   font-size: 14px;
@@ -36,14 +37,13 @@
   padding: 4rem 1rem;
 }
 
-.meow-list, .profile-card {
+.meow-list,
+.profile-card {
   padding-top: 15px;
 }
 
 @media screen and (min-width: 320px) {
-  
   .homepage-heading {
     font-size: 1.35em;
   }
-
 }

@@ -4,7 +4,8 @@
   padding-bottom: 10px;
 }
 
-.label, .input {
+.label,
+.input {
   width: 100%;
   padding: 5px;
 }
@@ -21,7 +22,6 @@
   font-size: 14px;
   text-align: center;
   padding: 0;
-
 }
 
 .submit {
@@ -31,17 +31,13 @@
   margin-top: 10px;
 }
 
-
-
-
-
 @media screen and (min-width: 760px) {
-  
   .signup-form {
     width: 80%;
   }
 
-  .label, .input {
+  .label,
+  .input {
     /* In order to define widths */
     display: inline-block;
   }
@@ -66,5 +62,4 @@
     width: 30%;
     margin-left: 4%;
   }
-
 }

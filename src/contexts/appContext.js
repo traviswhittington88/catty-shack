@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const AppContext = React.createContext({
   loading: Boolean,
@@ -16,7 +16,7 @@ const AppContext = React.createContext({
   uploadImage: () => {},
   userData: {},
   meows: [],
-  meow: [],
-})
+  meow: []
+});
 
 export default AppContext;

@@ -1,0 +1,18 @@
+.commentContainer {
+  margin-left: 25px;
+}
+
+.commentImage {
+  border-radius: 50%;
+  max-width: 100%;
+  min-height: 100px;
+  object-fit: cover;
+}
+
+.invSeparator {
+  opacity: 0;
+}
+
+.commentData {
+  margin-left: 20px;
+}

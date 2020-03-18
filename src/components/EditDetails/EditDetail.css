@@ -6,7 +6,7 @@
   width: 100%;
   height: 100%;
   text-align: center;
-  z-index: 1000; 
+  z-index: 1000;
 }
 
 #dialog #dialog-content {
@@ -61,14 +61,14 @@
 
 /* Tooltip arrow */
 .tooltip .tooltiptext::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 100%;
   left: 50%;
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: #555 transparent transparent transparent;  /*this creates the arrow effect */
+  border-color: #555 transparent transparent transparent; /*this creates the arrow effect */
 }
 
 /* Show tooltip text when you mouse over the tooltip container */

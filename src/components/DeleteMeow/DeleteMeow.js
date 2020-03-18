@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import AppContext from '../../contexts/appContext'
+import React, { Component } from 'react';
+import AppContext from '../../contexts/appContext';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -12,57 +12,53 @@ const styles = {
     position: 'absolute',
     left: '80%'
   }
-}
+};
 
 export default class DeleteMeow extends Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   state = {
-    open: false,
-  }
+    open: false
+  };
 
   static contextType = AppContext;
-  
+
   handleOpen = () => {
-    this.setState({ open: true })
-  }
+    this.setState({ open: true });
+  };
   handleClose = () => {
-    this.setState({ open: false })
-  }
+    this.setState({ open: false });
+  };
   deleteMeow = () => {
-    this.context.deleteMeow(this.props.meow_id)
-    this.setState({ open: false })
-  }
+    this.context.deleteMeow(this.props.meow_id);
+    this.setState({ open: false });
+  };
   render() {
-  return (
-    <>
-      <MyButton  
-        onClick={this.handleOpen}
-        className="deleteButton"
-      >
-        <AiOutlineDelete />
-      </MyButton>
-      <Dialog
-        open={this.state.open}
-        onClose={this.handleClose}
-        fullWidth
-        maxWidth="sm"
-        >
+    return (
+      <>
+        <MyButton onClick={this.handleOpen} className='deleteButton'>
+          <AiOutlineDelete />
+        </MyButton>
+        <Dialog
+          open={this.state.open}
+          onClose={this.handleClose}
+          fullWidth
+          maxWidth='sm'>
           <DialogTitle>
             Are you sure you want to delete this right meow?
           </DialogTitle>
           <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
+            <Button onClick={this.handleClose} color='primary'>
               Cancel
             </Button>
-            <Button onClick={this.deleteMeow} color="secondary">
+            <Button onClick={this.deleteMeow} color='secondary'>
               Delete
             </Button>
           </DialogActions>
         </Dialog>
-    </>
-  )
-}
+      </>
+    );
+  }
 }

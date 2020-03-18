@@ -4,3 +4,9 @@
   min-height: 200px;
   object-fit: cover;
 }
+
+.separator {
+  width: 100%;
+  border-bottom: 1px solid rgba(0,0,0, 0.1);
+  margin-bottom: 20px;
+}

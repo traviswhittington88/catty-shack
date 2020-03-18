@@ -33,7 +33,9 @@
   padding: 7px;
 }
 
-.signup, .login, .logout {
+.signup,
+.login,
+.logout {
   display: inline-block;
 }
 
@@ -48,8 +50,6 @@
 a {
   text-decoration: none;
 }
-
-
 
 @media screen and (min-width: 500px) {
   .nav {

@@ -4,6 +4,7 @@ import dayjs from 'dayjs'
 import withStyles from '@material-ui/core/styles/withStyles'
 import { Link } from 'react-router-dom'
 import MyButton from '../MyButton/MyButton'
+import Comments from '../Comments/Comments'
 import TextField from '@material-ui/core/TextField'
 import './MeowDialog.css'
 // mui stuff
@@ -75,7 +76,7 @@ export default class MeowDialog extends Component {
               <Typography variant="body2" color="textSecondary">
                 {dayjs(value.meow.date_created).format('h:mm a, MMMM DD YYYY')}
               </Typography>
-              <hr className="separator"/>
+              <hr className="invSeparator"/>
               <Typography variant="body1" >
                 {value.meow.body}
               </Typography>
@@ -86,6 +87,8 @@ export default class MeowDialog extends Component {
               </MyButton>
               <span>{value.meow.commentcount} comments</span>
             </Grid>
+            <hr className="separator" />
+            <Comments comments={value.meow.comments} />
           </Grid>
           )
           return (

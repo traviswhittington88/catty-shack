@@ -1,81 +1,83 @@
-import React, { Component } from 'react'
-import './SignupForm.css'
-import AuthApiService from '../../services/auth-api-service'
-
+import React, { Component } from 'react';
+import './SignupForm.css';
+import AuthApiService from '../../services/auth-api-service';
 
 export default class SignupForm extends Component {
   static defaultProps = {
-      onSignupSuccess: () => {}
-  }
+    onSignupSuccess: () => {}
+  };
 
-  state = { error: null }
+  state = { error: null };
 
   handleSubmit = ev => {
-    ev.preventDefault()
-    const { user_name, full_name, password } = ev.target
-    const newUser = { 
+    ev.preventDefault();
+    const { user_name, full_name, password } = ev.target;
+    const newUser = {
       user_name: user_name.value,
       full_name: full_name.value,
-      password: password.value, 
-    }
+      password: password.value
+    };
 
-    this.setState({ error: null })
+    this.setState({ error: null });
 
     AuthApiService.postUser(newUser)
       .then(user => {
-        full_name.value = ''
-        user_name.value = ''
-        password.value = ''
-        this.props.onSignupSuccess()
+        full_name.value = '';
+        user_name.value = '';
+        password.value = '';
+        this.props.onSignupSuccess();
       })
       .catch(res => {
-        this.setState({ error: res.error })
-      }) 
-  }
+        this.setState({ error: res.error });
+      });
+  };
 
   render() {
-    const { error } = this.state
+    const { error } = this.state;
     return (
-      <form
-        className='signup-form'
-        onSubmit={this.handleSubmit}
-      >
-        <div role='alert'>
-          {error && <p className='error'>{error}</p>}
-        </div>
+      <form className='signup-form' onSubmit={this.handleSubmit}>
+        <div role='alert'>{error && <p className='error'>{error}</p>}</div>
         <div className='full_name'>
-          <label htmlFor='full_name' className="label">*Full name</label>
+          <label htmlFor='full_name' className='label'>
+            *Full name
+          </label>
           <input
             name='full_name'
             type='text'
             required
             id='full_name'
-            className="input"
+            className='input'
           />
         </div>
         <div className='user_name'>
-          <label htmlFor='user_name' className="label">*User name</label>
+          <label htmlFor='user_name' className='label'>
+            *User name
+          </label>
           <input
             name='user_name'
             type='text'
             required
             id='user_name'
-            className="input"
+            className='input'
           />
         </div>
         <div className='password'>
-          <label htmlFor='password' className="label">*Password</label>
+          <label htmlFor='password' className='label'>
+            *Password
+          </label>
           <input
             name='password'
             type='password'
             required
             id='password'
-            className="input"
+            className='input'
           />
         </div>
-        <button type='submit' className="submit">Sign up</button>
-        <div className="list-wrapper">
-          <ul className="unordered-list">
+        <button type='submit' className='submit'>
+          Sign up
+        </button>
+        <div className='list-wrapper'>
+          <ul className='unordered-list'>
             <li>Minimum 8 characters</li>
             <li>One uppercase character</li>
             <li>One lowercase character</li>
@@ -84,6 +86,6 @@ export default class SignupForm extends Component {
           </ul>
         </div>
       </form>
-    )
+    );
   }
 }

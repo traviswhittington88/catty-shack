@@ -39,14 +39,14 @@
 
 /* Tooltip arrow */
 .tooltip .tooltiptext::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 100%;
   left: 50%;
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: #555 transparent transparent transparent;  /*this creates the arrow effect */
+  border-color: #555 transparent transparent transparent; /*this creates the arrow effect */
 }
 
 /* Show tooltip text when you mouse over the tooltip container */
@@ -68,7 +68,10 @@
   font-size: 18px;
 }
 
-.profile-info > .bio, .location, .website, .joined {
+.profile-info > .bio,
+.location,
+.website,
+.joined {
   padding: 5px;
 }
 
@@ -78,7 +81,8 @@
   color: black;
 }
 
-.contact-button:hover, a:hover {
+.contact-button:hover,
+a:hover {
   opacity: 0.7;
 }
 
