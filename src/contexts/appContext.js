@@ -3,6 +3,7 @@ import React from 'react'
 const AppContext = React.createContext({
   loading: Boolean,
   getMeows: () => {},
+  getMeow: () => {},
   deleteMeow: () => {},
   postMeow: () => {},
   getUser: () => {},
@@ -15,6 +16,7 @@ const AppContext = React.createContext({
   uploadImage: () => {},
   userData: {},
   meows: [],
+  meow: [],
 })
 
 export default AppContext;

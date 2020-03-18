@@ -173,6 +173,30 @@ editUserDetails = (details) => {
     })
   }
 
+  getMeow = (meow_id) => {
+    this.setState({ loading: true })
+    fetch(`${config.API_ENDPOINT}api/meows/${meow_id}`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`,
+      }
+    })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error(res.statusText)
+      }
+      return res.json()
+    })
+    .then(meow => {
+      let newMeow = this.state.meow
+      newMeow = meow;
+      this.setState({ loading: false })
+      console.log('returned meow', meow)
+      this.setState({ meow: newMeow })
+    })
+  }
+
   setMeow = (meow_id) => {
     fetch(`${config.API_ENDPOINT}api/meows/${meow_id}`, {
       method: 'GET',
@@ -351,7 +375,9 @@ editUserDetails = (details) => {
     const contextValue = {
       loading: this.state.loading,
       meows: this.state.meows,
+      meow: this.state.meow,
       getMeows: this.getMeows,
+      getMeow: this.getMeow,
       deleteMeow: this.deleteMeow,
       postMeow: this.postMeow,
       getUser: this.getUser,

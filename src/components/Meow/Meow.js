@@ -6,6 +6,8 @@ import './Meow.css';
 import MyButton from '../MyButton/MyButton';
 import { MdChat, MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 import DeleteMeow from '../DeleteMeow/DeleteMeow';
+import MeowDialog from '../MeowDialog/MeowDialog';
+import LikeButton from '../LikeButton/LikeButton'
 
 class Meow extends Component {
   constructor(props) {
@@ -19,37 +21,12 @@ class Meow extends Component {
   }
   static contextType = AppContext;
 
-  likedMeow = () => {
-    if (
-      this.props.user.likes && 
-      this.props.user.likes.find(
-        (like) => like.meow_id === this.props.meow.meow_id
-      )
-    ) return true;
-    else return false;
-  }
+  
 
-  likeMeow = () => {
-    this.context.likeMeow(this.props.meow_id);
-  }
-
-  unlikeMeow = () => {
-    this.context.unlikeMeow(this.props.meow_id);
-  }
 
   render() {
     dayjs.extend(relativeTime);
     const { meow: { body, date_created, user_image, userHandle, meow_id, likeCount, commentCount } } = this.props;
-    
-    let likeButton = this.likedMeow() ? (
-      <MyButton tip="Undo like" tipClassName='tooltipnav' onClick={this.unlikeMeow}>
-        <MdFavorite />
-      </MyButton>
-    ) : (
-      <MyButton tip="Like" tipClassName='tooltipnav' onClick={this.likeMeow}>
-        <MdFavoriteBorder />
-      </MyButton>
-    ) 
 
     return (
       <div className="card">
@@ -58,7 +35,7 @@ class Meow extends Component {
           <h4><b>{userHandle}</b></h4>
           <p>{dayjs(date_created).fromNow()}</p>
           <p>{body}</p>
-          {likeButton}
+          <LikeButton meow_id={meow_id}/>
           <span>{likeCount} Likes</span>
           <MyButton tip="comments">
             <MdChat color="primary" />
@@ -68,6 +45,7 @@ class Meow extends Component {
         { userHandle === this.props.user.user_name  && 
           <DeleteMeow meow_id={meow_id} />
         }
+        <MeowDialog meow_id={meow_id} userHandle={userHandle} />
       </div>
     )
   }

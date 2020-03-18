@@ -48,6 +48,9 @@ export default class PostMeow extends Component {
   }
   handleClose = () => {
     this.setState({ open: false })
+    if (this.state.error) {
+      this.setState({ error: ''})
+    }
   }
   handleSubmit = (event) => {
     event.preventDefault()
@@ -85,7 +88,7 @@ export default class PostMeow extends Component {
                 rows="3"
                 multiline
                 placeholder="Scratch out a meow to your furry friend!"
-                error={error.body ? true : false }
+                //error={error.body ? true : false }
                 helperText={error.body}
                 className="textfield"
                 onChange={this.handleChange}
