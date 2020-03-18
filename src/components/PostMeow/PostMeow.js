@@ -38,7 +38,6 @@ export default class PostMeow extends Component {
   }
   static contextType = AppContext;
 
-  //componentWillReceiveProps()
 
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value })
@@ -52,8 +51,12 @@ export default class PostMeow extends Component {
   }
   handleSubmit = (event) => {
     event.preventDefault()
+    if (this.state.body === '') {
+      this.setState({ error: 'You can\'t submit an empty meow, try again!' })
+    } else {
     this.context.postMeow({ body: this.state.body })
     this.handleClose()
+    }
   }
 
   render() {
@@ -100,6 +103,7 @@ export default class PostMeow extends Component {
                <CircularProgress size={30} className="progressSpinner" />
               }
               </Button>
+              { this.state.error && <p className="error">{this.state.error}</p> }
             </form>
           </DialogContent>
         </Dialog>
