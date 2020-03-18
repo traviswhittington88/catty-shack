@@ -316,7 +316,7 @@ editUserDetails = (details) => {
     // set loading to true to kick off loading graphic
     this.setState({ loading: true })
     // post meow to meows table in db
-    fetch(`${config.API_ENDPOINT}api/meows/`, {
+    fetch(`${config.API_ENDPOINT}api/meows`, {
       method: 'POST',
       body: JSON.stringify(meow),
       headers: {
