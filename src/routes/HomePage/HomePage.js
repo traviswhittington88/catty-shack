@@ -3,8 +3,6 @@ import AppContext from '../../contexts/appContext';
 import Nav from '../../components/Nav/Nav';
 import Meow from '../../components/Meow/Meow';
 import Profile from '../../components/Profile/Profile';
-import TokenService from '../../services/token-service';
-import config from '../../config';
 import './HomePage.css';
 
 export default class HomePage extends Component {
@@ -40,9 +38,10 @@ export default class HomePage extends Component {
               <Nav />
               <main role='main'>
                 <div className='homepage'>
-                  <div className='container grid-2 center'>
+                  <div className='container center'>
+                    {' '}
                     <div className='meow-list'>{recentMeowsMarkup}</div>
-                    <div>
+                    <div className='profile-card-container'>
                       <Profile user={value.user} />
                     </div>
                   </div>

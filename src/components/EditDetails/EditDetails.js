@@ -56,7 +56,6 @@ export class EditDetails extends Component {
   };
 
   render() {
-    console.log(this.state.bio);
     return (
       <AppContext.Consumer>
         {value => {

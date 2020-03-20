@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import AppContext from '../../contexts/appContext';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -36,30 +37,35 @@ class Meow extends Component {
     } = this.props;
 
     return (
-      <div className='card'>
-        <img
-          src={`http://localhost:8000/${user_image}`}
-          alt='user profile image'
-          className='meow-image'
-        />
-        <div className='meow-container'>
-          <h4>
-            <b>{userHandle}</b>
-          </h4>
-          <p>{dayjs(date_created).fromNow()}</p>
-          <p>{body}</p>
-          <LikeButton meow_id={meow_id} />
-          <span>{likeCount} likes</span>
-          <MyButton tip='Comment' tipClassName='tooltipnav'>
-            <MdChat color='primary' />
-          </MyButton>
-          <span>{commentCount} comments</span>
+      <>
+        <div className='card'>
+          <img
+            src={`http://localhost:8000/${user_image}`}
+            alt='user profile image'
+            className='meow-image'
+          />
+          <div className='meow-container'>
+            <h4>
+              <b>
+                {' '}
+                <Link to={`users/${userHandle}`}>@{userHandle}</Link>
+              </b>
+            </h4>
+            <p>{dayjs(date_created).fromNow()}</p>
+            <p>{body}</p>
+            <LikeButton meow_id={meow_id} />
+            <span>{likeCount} likes</span>
+            <MyButton tip='Comment' tipClassName='tooltipnav'>
+              <MdChat color='primary' />
+            </MyButton>
+            <span>{commentCount} comments</span>
+          </div>
+          {userHandle === this.props.user.user_name && (
+            <DeleteMeow meow_id={meow_id} />
+          )}
+          <MeowDialog meow_id={meow_id} userHandle={userHandle} />
         </div>
-        {userHandle === this.props.user.user_name && (
-          <DeleteMeow meow_id={meow_id} />
-        )}
-        <MeowDialog meow_id={meow_id} userHandle={userHandle} />
-      </div>
+      </>
     );
   }
 }

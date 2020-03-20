@@ -10,6 +10,7 @@ import LoginPage from '../../routes/LoginPage/LoginPage';
 import SignupPage from '../../routes/SignupPage/SignupPage';
 import LandingPage from '../../routes/LandingPage/LandingPage';
 import NotFoundPage from '../../routes/NotFoundPage/NotFoundPage';
+import UserPage from '../../routes/UserPage/UserPage';
 import './App.css';
 import config from '../../config';
 
@@ -30,14 +31,45 @@ export default class App extends Component {
         notifications: []
       },
       meows: [],
-      meow: [],
+      meow: {},
+      profile: null,
       hasError: false,
       error: { message: null },
       loading: false
     };
   }
 
-  // GET Routes
+  // Set data methods
+  setMeows = newMeows => {
+    this.setState({ meows: newMeows });
+  };
+
+  // GET Methods
+  getUserData = user_name => {
+    this.setState({ loading: true });
+    fetch(`${config.API_ENDPOINT}api/users/${user_name}`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `bearer ${TokenService.getAuthToken()}`
+      }
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(res.statusText);
+        }
+        return res.json();
+      })
+      .then(userData => {
+        let meows = userData.meows;
+        let profile = userData.user;
+        this.setState({ meows, profile });
+        this.setState({ loading: false });
+      })
+      .catch(error => {
+        this.setState({ error });
+      });
+  };
 
   getUser = () => {
     fetch(`${config.API_ENDPOINT}api/users/details`, {
@@ -109,7 +141,6 @@ export default class App extends Component {
   };
 
   getMeow = meow_id => {
-    this.setState({ loading: true });
     fetch(`${config.API_ENDPOINT}api/meows/${meow_id}`, {
       method: 'GET',
       headers: {
@@ -123,12 +154,8 @@ export default class App extends Component {
         }
         return res.json();
       })
-      .then(meow => {
-        let newMeow = this.state.meow;
-        newMeow = meow;
-        this.setState({ loading: false });
-        console.log('returned meow', meow);
-        this.setState({ meow: newMeow });
+      .then(meowDb => {
+        this.setState({ meow: meowDb });
       });
   };
 
@@ -291,6 +318,41 @@ export default class App extends Component {
 
   // POST routes
 
+  postComment = (meow_id, comment) => {
+    // increment comment count of meow being commented
+    const index = this.state.meows.findIndex(meow => meow.meow_id === meow_id);
+    let newMeows = this.state.meows;
+    newMeows[index].commentCount++;
+    this.setState({ meows: newMeows });
+    // increment count in meow dialog of meow being displayed
+    let newMeow = this.state.meow;
+    newMeow.commentcount++;
+    this.setState({ meow: newMeow });
+    // Post new comment to DB
+    fetch(`${config.API_ENDPOINT}api/meows/${meow_id}/comments`, {
+      method: 'POST',
+      body: JSON.stringify(comment),
+      headers: {
+        'content-type': 'application/json',
+        authorization: `bearer ${TokenService.getAuthToken()}`
+      }
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(res.statusText);
+        }
+        return res.json();
+      })
+      .then(comment => {
+        let newMeow = this.state.meow;
+        newMeow.comments.unshift(comment);
+        this.setState({ meow: newMeow });
+      })
+      .catch(error => {
+        this.setState({ error });
+      });
+  };
+
   uploadImage = formData => {
     fetch(`${config.API_ENDPOINT}api/users/image`, {
       method: 'POST',
@@ -307,15 +369,12 @@ export default class App extends Component {
       })
       .then(user => {
         // update user image of meows owned by the user to reflect new image
-        console.log(user);
         let newMeows = this.state.meows;
         newMeows.map(meow => {
           if (meow.userHandle === user.user_name) {
             meow.user_image = user.user_image;
           }
         });
-
-        console.log(newMeows);
 
         //this.setState({ meows: newMeows })
 
@@ -331,7 +390,7 @@ export default class App extends Component {
           }
         });
       })
-      .catch(err => console.log(err));
+      .catch(err => this.setState({ error: err }));
   };
 
   editUserDetails = details => {
@@ -365,7 +424,6 @@ export default class App extends Component {
   };
 
   postMeow = meow => {
-    console.log('postMeow called', meow);
     // set loading to true to kick off loading graphic
     this.setState({ loading: true });
     // post meow to meows table in db
@@ -384,13 +442,11 @@ export default class App extends Component {
         return res.json();
       })
       .then(meow => {
-        console.log('meow returned from db', meow);
         // we have data, stop loading graphic
         this.setState({ loading: false });
         // add meow to meows array in state
         let newMeows = this.state.meows;
         newMeows.unshift(meow);
-        console.log('newMeows after adding the meow', newMeows);
         this.setState({ meows: newMeows });
       });
   };
@@ -405,14 +461,16 @@ export default class App extends Component {
       loading: this.state.loading,
       meows: this.state.meows,
       meow: this.state.meow,
+      getUser: this.getUser,
+      getUserData: this.getUserData,
       getMeows: this.getMeows,
       getMeow: this.getMeow,
-      deleteMeow: this.deleteMeow,
-      postMeow: this.postMeow,
-      getUser: this.getUser,
-      editUserDetails: this.editUserDetails,
       likeMeow: this.likeMeow,
       unlikeMeow: this.unlikeMeow,
+      deleteMeow: this.deleteMeow,
+      postMeow: this.postMeow,
+      postComment: this.postComment,
+      editUserDetails: this.editUserDetails,
       setMeows: this.setMeows,
       setMeow: this.setMeow,
       user: this.state.user,
@@ -434,6 +492,7 @@ export default class App extends Component {
                 {/* make private later */}
                 <Route exact path='/login' component={LoginPage} />
                 <Route exact path='/signup' component={SignupPage} />
+                <Route exact path='/users/:user_name' component={UserPage} />
                 <Route component={NotFoundPage} />
               </Switch>
               <Footer />

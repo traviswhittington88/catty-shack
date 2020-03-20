@@ -75,6 +75,10 @@
   padding: 5px;
 }
 
+.padding-info {
+  padding-bottom: 5px;
+}
+
 .icon {
   text-decoration: none;
   font-size: 22px;

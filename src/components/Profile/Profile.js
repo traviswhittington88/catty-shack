@@ -69,7 +69,7 @@ export default class Profile extends Component {
                   </IconButton>
                 </div>
                 <h2>
-                  <Link to={`/users/${value.user.user_name}`}>
+                  <Link to={`users/${value.user.user_name}`}>
                     @{value.user.user_name}
                   </Link>
                 </h2>
@@ -100,7 +100,7 @@ export default class Profile extends Component {
                   </div>
                   <EditDetails details={value.user} />
                 </div>
-                <button className='contact-button'>Contact</button>
+                {/*<button className='contact-button'>Contact</button>*/}
               </div>
             </>
           );
