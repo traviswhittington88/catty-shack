@@ -30,16 +30,34 @@ export default class MeowDialog extends Component {
   }
   state = {
     open: false,
-    error: ''
+    error: '',
+    oldPath: '',
+    newPath: ''
   };
+
+  componentDidMount() {
+    if (this.props.openDialog) {
+      this.handleOpen();
+    }
+  }
 
   static contextType = AppContext;
 
   handleOpen = () => {
+    let oldPath = window.location.pathname;
+    const { userHandle, meow_id } = this.props;
+    const newPath = `/users/${userHandle}/meows/${meow_id}`;
+
+    if (oldPath.toString() === newPath.toString())
+      oldPath = `/users/${userHandle}`;
+    window.history.pushState(null, null, newPath);
+
+    this.setState({ open: true, oldPath, newPath });
+
     this.context.getMeow(this.props.meow_id);
-    this.setState({ open: true });
   };
   handleClose = () => {
+    window.history.pushState(null, null, this.state.oldPath);
     this.setState({ open: false });
     if (this.state.error) {
       this.setState({ error: '' });

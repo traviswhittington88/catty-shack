@@ -26,7 +26,7 @@ export class StaticProfile extends Component {
             className='profile-image'
           />
           <h2>
-            <Link to={`users/${user_name}`}>@{user_name}</Link>
+            <Link to={`/users/${user_name}`}>@{user_name}</Link>
           </h2>
           <div className='profile-info'>
             {bio && <p className='bio'>{bio}</p>}

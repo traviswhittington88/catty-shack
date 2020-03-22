@@ -18,11 +18,18 @@ class UserPage extends Component {
       bio: '',
       location: '',
       website: ''
-    }
+    },
+    meow_id_param: null,
+    openDialog: false
   };
 
   componentDidMount() {
     const user_name = this.props.match.params.user_name;
+    const meow_id = this.props.match.params.meow_id;
+    console.log('meow_id_param in URL', meow_id);
+
+    if (meow_id) this.setState({ meow_id_param: meow_id, openDialog: true });
+
     this.context.getUserData(user_name);
 
     fetch(`${config.API_ENDPOINT}api/users/${user_name}`, {
@@ -68,6 +75,7 @@ class UserPage extends Component {
   }
 
   render() {
+    const { meow_id_param, openDialog } = this.state;
     return (
       <AppContext.Consumer>
         {value => {
@@ -76,7 +84,7 @@ class UserPage extends Component {
             <p>Loading Data...</p>
           ) : value.meows === null ? (
             <p>No meows from this user</p>
-          ) : (
+          ) : !meow_id_param ? (
             value.meows.map(meow => (
               <Meow
                 key={meow.meow_id}
@@ -85,6 +93,29 @@ class UserPage extends Component {
                 user={user}
               />
             ))
+          ) : (
+            value.meows.map(meow => {
+              if (meow.meow_id.toString() !== meow_id_param.toString()) {
+                return (
+                  <Meow
+                    key={meow.meow_id}
+                    meow_id={meow.meow_id}
+                    meow={meow}
+                    user={user}
+                  />
+                );
+              } else {
+                return (
+                  <Meow
+                    key={meow.meow_id}
+                    meow_id={meow_id_param}
+                    meow={meow}
+                    user={user}
+                    openDialog={openDialog}
+                  />
+                );
+              }
+            })
           );
 
           return (

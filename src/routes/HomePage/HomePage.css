@@ -1,3 +1,4 @@
+.homepage,
 .container {
   min-height: 100vh;
   background: rgb(65, 169, 203);
@@ -31,7 +32,6 @@
     padding-top: 30px;
     display: flex;
     flex-direction: column;
-    background-color: green;
   }
 
   .meow-list .card {
@@ -55,7 +55,6 @@
 
 @media screen and (min-width: 600px) and (max-width: 1000px) {
   .container {
-    background-color: red;
     display: flex;
     flex-direction: column;
   }

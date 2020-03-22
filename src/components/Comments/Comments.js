@@ -11,12 +11,10 @@ export default class Comments extends Component {
   }
   render() {
     const { comments } = this.props;
-    console.log('comments', comments);
     return (
       <Grid>
         {comments &&
           comments.map(comment => {
-            console.log('inside comments');
             const { body, date_created, user_image, user_name } = comment;
             return (
               <div key={date_created} className='commentContainer'>

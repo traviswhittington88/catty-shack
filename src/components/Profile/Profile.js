@@ -69,7 +69,7 @@ export default class Profile extends Component {
                   </IconButton>
                 </div>
                 <h2>
-                  <Link to={`users/${value.user.user_name}`}>
+                  <Link to={`/users/${value.user.user_name}`}>
                     @{value.user.user_name}
                   </Link>
                 </h2>

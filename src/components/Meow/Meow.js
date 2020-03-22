@@ -23,6 +23,7 @@ class Meow extends Component {
   static contextType = AppContext;
 
   render() {
+    console.log('props', this.props.openDialog);
     dayjs.extend(relativeTime);
     const {
       meow: {
@@ -63,7 +64,11 @@ class Meow extends Component {
           {userHandle === this.props.user.user_name && (
             <DeleteMeow meow_id={meow_id} />
           )}
-          <MeowDialog meow_id={meow_id} userHandle={userHandle} />
+          <MeowDialog
+            meow_id={meow_id}
+            userHandle={userHandle}
+            openDialog={this.props.openDialog}
+          />
         </div>
       </>
     );

@@ -190,7 +190,7 @@ export default class App extends Component {
       meow_id: meow_id
     };
     this.state.user.likes.push(newLike);
-    // Create a new meows array from state, increment the likeCunt on the meow that was liked and replace with old meows array
+    // Create a new meows array from state, increment the likeCount on the meow that was liked and replace with old meows array
     const index = this.state.meows.findIndex(meow => meow.meow_id === meow_id);
     let newMeows = this.state.meows;
     newMeows[index].likeCount++;
@@ -490,9 +490,13 @@ export default class App extends Component {
                 <Route exact path='/' component={LandingPage} />
                 <Route exact path='/home' component={HomePage} />{' '}
                 {/* make private later */}
-                <Route exact path='/login' component={LoginPage} />
-                <Route exact path='/signup' component={SignupPage} />
+                <Route path='/login' component={LoginPage} />
+                <Route path='/signup' component={SignupPage} />
                 <Route exact path='/users/:user_name' component={UserPage} />
+                <Route
+                  path='/users/:user_name/meows/:meow_id'
+                  component={UserPage}
+                />
                 <Route component={NotFoundPage} />
               </Switch>
               <Footer />
