@@ -2,10 +2,8 @@ import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 import EditDetails from '../../components/EditDetails/EditDetails';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
 import { MdLocationOn, MdToday, MdLink, MdEdit } from 'react-icons/md';
-import IconButton from '@material-ui/core/IconButton';
+import config from '../../config'
 
 export class StaticProfile extends Component {
   constructor(props) {
@@ -21,7 +19,7 @@ export class StaticProfile extends Component {
       <Fragment>
         <div className='profile-card'>
           <img
-            src={`http://localhost:8000/${user_image}`}
+            src={`${config.API_ENDPOINT}${user_image}`}
             alt='profile'
             className='profile-image'
           />

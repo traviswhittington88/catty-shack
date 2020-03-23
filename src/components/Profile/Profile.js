@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import EditDetails from '../../components/EditDetails/EditDetails';
 import AppContext from '../../contexts/appContext';
-import TokenService from '../../services/token-service';
 import dayjs from 'dayjs';
 import config from '../../config';
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -50,7 +49,7 @@ export default class Profile extends Component {
             <>
               <div className='profile-card'>
                 <img
-                  src={`http://localhost:8000/${value.user.user_image}`}
+                  src={`${config.API_ENDPOINT}${value.user.user_image}`}
                   alt='profile'
                   className='profile-image'
                 />
