@@ -9,6 +9,7 @@ import { MdChat, MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 import DeleteMeow from '../DeleteMeow/DeleteMeow';
 import MeowDialog from '../MeowDialog/MeowDialog';
 import LikeButton from '../LikeButton/LikeButton';
+import config from '../../config';
 
 class Meow extends Component {
   constructor(props) {
@@ -41,7 +42,7 @@ class Meow extends Component {
       <>
         <div className='card'>
           <img
-            src={`http://localhost:8000/${user_image}`}
+            src={`${config.API_ENDPOINT}${user_image}`}
             alt='user profile image'
             className='meow-image'
           />
@@ -49,7 +50,7 @@ class Meow extends Component {
             <h4>
               <b>
                 {' '}
-                <Link to={`users/${userHandle}`}>@{userHandle}</Link>
+                <Link to={`/users/${userHandle}`}>@{userHandle}</Link>
               </b>
             </h4>
             <p>{dayjs(date_created).fromNow()}</p>

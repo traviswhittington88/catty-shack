@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import config from '../../config';
 import './Comments.css';
 
 export default class Comments extends Component {
@@ -22,7 +23,7 @@ export default class Comments extends Component {
                   <Grid container>
                     <Grid item sm={2}>
                       <img
-                        src={`http://localhost:8000/${user_image}`}
+                        src={`${config.API_ENDPOINT}${user_image}`}
                         alt='comment'
                         className='commentImage'
                       />

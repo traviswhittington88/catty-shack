@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import MyButton from '../MyButton/MyButton';
 import Comments from '../Comments/Comments';
 import CommentForm from '../CommentForm/CommentForm';
+import config from '../../config';
 import './MeowDialog.css';
 // mui stuff
 import { MdChat, MdClose, MdUnfoldMore } from 'react-icons/md';
@@ -73,7 +74,7 @@ export default class MeowDialog extends Component {
             <Grid container spacing={10}>
               <Grid item sm={5}>
                 <img
-                  src={`http://localhost:8000/${value.meow.user_image}`}
+                  src={`${config.API_ENDPOINT}${value.meow.user_image}`}
                   alt='profile'
                   className='profileImage'
                 />
