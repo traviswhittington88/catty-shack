@@ -28,10 +28,12 @@ class Notifications extends Component {
     this.setState({ anchorEl: null });
   };
   onMenuOpened = () => {
-    let unreadNotificationsIds = this.context.notifications
-      .filter(notification => !notification.read)
-      .map(notification => notification.id);
-    this.context.markNotificationsRead(unreadNotificationsIds);
+    if (this.context.notifications) {
+      let unreadNotificationsIds = this.context.notifications
+        .filter(notification => !notification.read)
+        .map(notification => notification.id);
+      this.context.markNotificationsRead(unreadNotificationsIds);
+    }
   };
   render() {
     const notifications = this.context.notifications;
