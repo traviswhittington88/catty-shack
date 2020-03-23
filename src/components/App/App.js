@@ -318,6 +318,23 @@ export default class App extends Component {
 
   // POST routes
 
+  markNotificationsRead = notificationIds => {
+    // mark notifications read in db
+    fetch(`${config.API_ENDPOINT}api/users/notifications`, notificationIds)
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(res.statusText);
+        }
+        return res.json();
+      })
+      .then(() => {
+        let tempNotifications = this.state.user.notifications;
+      })
+      .catch(error => {
+        this.setState({ error });
+      });
+  };
+
   postComment = (meow_id, comment) => {
     // increment comment count of meow being commented
     const index = this.state.meows.findIndex(meow => meow.meow_id === meow_id);
@@ -461,7 +478,9 @@ export default class App extends Component {
       loading: this.state.loading,
       meows: this.state.meows,
       meow: this.state.meow,
+      notifications: this.state.user.notifications,
       getUser: this.getUser,
+      markNotificationsRead: this.markNotificationsRead,
       getUserData: this.getUserData,
       getMeows: this.getMeows,
       getMeow: this.getMeow,

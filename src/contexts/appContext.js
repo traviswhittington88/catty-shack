@@ -7,6 +7,7 @@ const AppContext = React.createContext({
   deleteMeow: () => {},
   postMeow: () => {},
   postComment: () => {},
+  markNotificationsRead: () => {},
   getUser: () => {},
   getUserData: () => {},
   getLikes: () => {},
@@ -18,7 +19,8 @@ const AppContext = React.createContext({
   uploadImage: () => {},
   userData: {},
   meows: [],
-  meow: []
+  meow: [],
+  notifications: []
 });
 
 export default AppContext;
