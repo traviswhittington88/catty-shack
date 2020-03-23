@@ -3,6 +3,7 @@ import AppContext from '../../contexts/appContext';
 import Nav from '../../components/Nav/Nav';
 import Meow from '../../components/Meow/Meow';
 import Profile from '../../components/Profile/Profile';
+import MeowSkeleton from '../../components/MeowSkeleton/MeowSkeleton';
 import './HomePage.css';
 
 export default class HomePage extends Component {
@@ -30,7 +31,7 @@ export default class HomePage extends Component {
               />
             ))
           ) : (
-            <p>Loading ...</p>
+            <MeowSkeleton />
           );
 
           return (

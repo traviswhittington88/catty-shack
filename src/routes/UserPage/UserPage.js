@@ -4,6 +4,7 @@ import AppContext from '../../contexts/appContext';
 import config from '../../config';
 import TokenService from '../../services/token-service';
 import Meow from '../../components/Meow/Meow';
+import MeowSkeleton from '../../components/MeowSkeleton/MeowSkeleton';
 import StaticProfile from '../../components/StaticProfile/StaticProfile';
 
 class UserPage extends Component {
@@ -81,7 +82,7 @@ class UserPage extends Component {
         {value => {
           let user = this.state.user;
           let meowsMarkup = this.context.loading ? (
-            <p>Loading Data...</p>
+            <MeowSkeleton />
           ) : value.meows === null ? (
             <p>No meows from this user</p>
           ) : !meow_id_param ? (
