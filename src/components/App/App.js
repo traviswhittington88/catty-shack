@@ -319,8 +319,16 @@ export default class App extends Component {
   // POST routes
 
   markNotificationsRead = notificationIds => {
+    console.log(notificationIds);
     // mark notifications read in db
-    fetch(`${config.API_ENDPOINT}api/users/notifications`, notificationIds)
+    fetch(`${config.API_ENDPOINT}api/users/notifications`, {
+      method: 'POST',
+      body: JSON.stringify(notificationIds),
+      headers: {
+        'content-type': 'application/json',
+        authorization: `bearer ${TokenService.getAuthToken()}`
+      }
+    })
       .then(res => {
         if (!res.ok) {
           throw new Error(res.statusText);
@@ -328,7 +336,11 @@ export default class App extends Component {
         return res.json();
       })
       .then(() => {
-        let tempNotifications = this.state.user.notifications;
+        let updatedNotifications = this.state.user.notifications;
+        updatedNotifications.forEach(
+          notification => (notification.read = true)
+        );
+        this.setState({ notifications: updatedNotifications });
       })
       .catch(error => {
         this.setState({ error });
