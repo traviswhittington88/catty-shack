@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 import EditDetails from '../../components/EditDetails/EditDetails';
 import { MdLocationOn, MdToday, MdLink, MdEdit } from 'react-icons/md';
-import config from '../../config'
+import config from '../../config';
 
 export class StaticProfile extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ export class StaticProfile extends Component {
       <Fragment>
         <div className='profile-card'>
           <img
-            src={`${config.API_ENDPOINT}${user_image}`}
+            srcSet={`${config.API_ENDPOINT}${user_image}`}
             alt='profile'
             className='profile-image'
           />

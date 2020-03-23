@@ -24,6 +24,7 @@
 
 .meow-image {
   border-radius: 5px 5px 0 0;
+  min-width: 200px;
   max-width: 200px;
   object-fit: cover;
 }
