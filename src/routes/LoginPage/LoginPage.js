@@ -33,6 +33,10 @@ export default class LoginPage extends Component {
             <div className='login-content'>
               <LoginForm onLoginSuccess={this.handleLoginSuccess} />
             </div>
+            <ul className='defaultCreds'>
+              <li>Username - defaultUser</li>
+              <li>Password - AAaa$$11</li>
+            </ul>
           </section>
         </main>
       </>

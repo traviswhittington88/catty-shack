@@ -49,7 +49,7 @@ export default class Profile extends Component {
             <>
               <div className='profile-card'>
                 <img
-                  src={`${config.API_ENDPOINT}${value.user.user_image}`}
+                  src={`/src/images/showcase.jpg`}
                   alt='profile'
                   className='profile-image'
                 />

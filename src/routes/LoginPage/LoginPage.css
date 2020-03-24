@@ -33,6 +33,13 @@ main {
   -webkit-filter: blur(0px);
 }
 
+.defaultCreds {
+  padding: 0;
+  margin: 0 auto;
+  font-size: 14px;
+  list-style: none;
+}
+
 @media screen and (min-width: 320px) {
   /* iPhone 4 */
 
