@@ -15,7 +15,7 @@ export class StaticProfile extends Component {
       <Fragment>
         <div className='profile-card'>
           <img
-            srcSet={`${config.API_ENDPOINT}${user_image}`}
+            src={`${config.API_ENDPOINT}${user_image}`}
             alt='profile'
             className='profile-image'
           />

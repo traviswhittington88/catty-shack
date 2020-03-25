@@ -8,6 +8,7 @@ import './Profile.css';
 //import { FaTwitter } from 'react-icons/fa';
 import { MdLocationOn, MdToday, MdLink, MdEdit } from 'react-icons/md';
 import IconButton from '@material-ui/core/IconButton';
+import config from '../../config';
 
 export default class Profile extends Component {
   constructor(props) {
@@ -48,7 +49,7 @@ export default class Profile extends Component {
             <>
               <div className='profile-card'>
                 <img
-                  src={`/src/images/showcase.jpg`}
+                  src={`${config.API_ENDPOINT}${this.props.user.user_image}`}
                   alt='profile'
                   className='profile-image'
                 />
