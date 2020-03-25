@@ -4,33 +4,13 @@ import { MdAdd, MdClose } from 'react-icons/md';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import DialogContent from '@material-ui/core/DialogContent';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import './PostMeow.css';
 import AppContext from '../../contexts/appContext';
 
-const styles = theme => ({
-  ...theme,
-  submitButton: {
-    position: 'relative'
-  },
-  progressSpinner: {
-    position: 'absolute'
-  },
-  closeButton: {
-    position: 'absolute',
-    left: '90%',
-    top: '10%'
-  }
-});
-
 export default class PostMeow extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   state = {
     open: false,
     body: '',

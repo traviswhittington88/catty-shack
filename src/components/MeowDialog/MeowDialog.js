@@ -17,18 +17,7 @@ import Typography from '@material-ui/core/Typography';
 import AppContext from '../../contexts/appContext';
 import LikeButton from '../LikeButton/LikeButton';
 
-const styles = theme => ({
-  ...theme,
-  separator: {
-    border: 'none',
-    margin: '4'
-  }
-});
-
 export default class MeowDialog extends Component {
-  constructor(props) {
-    super(props);
-  }
   state = {
     open: false,
     error: '',

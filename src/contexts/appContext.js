@@ -13,7 +13,6 @@ const AppContext = React.createContext({
   getLikes: () => {},
   likeMeow: () => {},
   unlikeMeow: () => {},
-  getUserData: () => {},
   toggleDialog: () => {},
   editUserDetails: () => {},
   uploadImage: () => {},

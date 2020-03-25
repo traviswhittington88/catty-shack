@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import MyButton from '../MyButton/MyButton';
 import AppContext from '../../contexts/appContext';
 // icons
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 
 class LikeButton extends Component {
-  constructor(props) {
-    super(props);
-  }
   static contextType = AppContext;
 
   likedMeow = () => {

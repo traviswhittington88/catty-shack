@@ -182,7 +182,6 @@ export default class App extends Component {
   };
 
   likeMeow = meow_id => {
-    const { meows } = this.state;
     // Add Like to likes array
     const newLike = {
       id: null,
@@ -255,16 +254,16 @@ export default class App extends Component {
         }
         return res.json();
       })
-      .then(meow => {
-        if (meow.meow_id === this.state.meow.meow_id) {
+      .then(meowData => {
+        if (meowData.meow_id === this.state.meow.meow_id) {
           let newMeow = this.state.meow;
           newMeow.likecount--;
           this.setState({ meow: newMeow });
         }
         let index = this.state.meows.findIndex(
-          meow => meow.meow_id === meow.meow_id
+          meow => meow.meow_id === meowData.meow_id
         );
-        this.setState(this.state.meows[index] === meow);
+        this.setState(this.state.meows[index] === meowData);
       })
       .catch(error => {
         this.setState({ error });
@@ -399,7 +398,7 @@ export default class App extends Component {
       .then(user => {
         // update user image of meows owned by the user to reflect new image
         let newMeows = this.state.meows;
-        newMeows.map(meow => {
+        newMeows.forEach(meow => {
           if (meow.userHandle === user.user_name) {
             meow.user_image = user.user_image;
           }
@@ -505,8 +504,7 @@ export default class App extends Component {
       setMeows: this.setMeows,
       setMeow: this.setMeow,
       user: this.state.user,
-      uploadImage: this.uploadImage,
-      getUserData: this.getUserData
+      uploadImage: this.uploadImage
     };
     return (
       <AppContext.Provider value={contextValue}>

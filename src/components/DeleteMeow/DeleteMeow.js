@@ -7,18 +7,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import { AiOutlineDelete } from 'react-icons/ai';
 import MyButton from '../MyButton/MyButton';
 
-const styles = {
-  deleteButton: {
-    position: 'absolute',
-    left: '80%'
-  }
-};
-
 export default class DeleteMeow extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   state = {
     open: false
   };

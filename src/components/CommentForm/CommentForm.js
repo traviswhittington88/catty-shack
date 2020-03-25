@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-// Type checking for props
-import PropTypes from 'prop-types';
 // Context
 import AppContext from '../../contexts/appContext';
 // MUI Stuff

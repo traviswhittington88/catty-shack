@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import './Meow.css';
 import MyButton from '../MyButton/MyButton';
-import { MdChat, MdFavorite, MdFavoriteBorder } from 'react-icons/md';
+import { MdChat } from 'react-icons/md';
 import DeleteMeow from '../DeleteMeow/DeleteMeow';
 import MeowDialog from '../MeowDialog/MeowDialog';
 import LikeButton from '../LikeButton/LikeButton';
@@ -43,7 +43,7 @@ class Meow extends Component {
         <div className='card'>
           <img
             src={`${config.API_ENDPOINT}${user_image}`}
-            alt='user profile image'
+            alt='user profile'
             className='meow-image'
           />
           <div className='meow-container'>

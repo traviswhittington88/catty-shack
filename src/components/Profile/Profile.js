@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import EditDetails from '../../components/EditDetails/EditDetails';
 import AppContext from '../../contexts/appContext';
 import dayjs from 'dayjs';
-import config from '../../config';
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './Profile.css';
 //import { FaTwitter } from 'react-icons/fa';

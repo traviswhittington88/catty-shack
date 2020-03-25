@@ -7,10 +7,6 @@ import MeowSkeleton from '../../components/MeowSkeleton/MeowSkeleton';
 import './HomePage.css';
 
 export default class HomePage extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   static contextType = AppContext;
 
   componentDidMount() {

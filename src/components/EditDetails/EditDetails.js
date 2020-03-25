@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import config from '../../config';
-import TokenService from '../../services/token-service';
 import AppContext from '../../contexts/appContext';
 import IconButton from '@material-ui/core/IconButton';
 import { MdEdit } from 'react-icons/md';
-import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 
 export class EditDetails extends Component {
