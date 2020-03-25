@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom';
 import EditDetails from '../../components/EditDetails/EditDetails';
 import AppContext from '../../contexts/appContext';
 import dayjs from 'dayjs';
-//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './Profile.css';
-//import { FaTwitter } from 'react-icons/fa';
 import { MdLocationOn, MdToday, MdLink, MdEdit } from 'react-icons/md';
 import IconButton from '@material-ui/core/IconButton';
 import config from '../../config';
