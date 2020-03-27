@@ -1,69 +1,77 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# CattyShack - A social app for cats!
 
-## Available Scripts
+A social media app based on the personalities of our favorite felines. Actually this was an idea I got from a friend and decided to bring it to life just for fun. I also thought it would be a great little app to share with my 3 children and make them laugh.
 
-In the project directory, you can run:
 
-### `npm start`
+![](src/images/landingpage.png)
+![](src/images/landingpage2.png)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Tech Stack
 
-### `npm test`
+* React
+* Node/Express
+* Postgres
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Startup
 
-### `npm run build`
+* Clone the project to an empty folder and initialize
+* `npm t`  (basic smokescreen tests for component rendering)
+* `npm start` (starts the application on port 3000)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Production build
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+To create a production build use the `npm run build` command
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Registration
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![](src/images/signup.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+If you want to skip the registration process see the logging in section for default credentials.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+As a first time user you can create a Catty Shack account by inputting your username and password.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+e.g.
 
-## Learn More
+* username - theBugs52
+* password - looneytoons53$$  (must be at least 8 characters with 1 uppercase, lowercase, number & special character)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Logging In
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![](src/images/login.png)
 
-### Code Splitting
+Once you've registered you will be automatically redirected to the login page where you can enter your recently created credentials
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+### Default Credentials
 
-### Analyzing the Bundle Size
+* `defaultUser` 
+* `AAaa$$11`
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+## Accessing The Default User
 
-### Making a Progressive Web App
+![](src/images/homepage.png)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+The default user is a pre-designed user profile for a random cat. You can post moews (posts), comment on meows, and like or unlike meows. It's a lot of fun! As the authenticated user of a profile you can also update your bio, check notifications from other users, and reciprocate likes and comments to your fellow felines!
 
-### Advanced Configuration
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+## Editing Profile Information
 
-### Deployment
+![](src/images/edit.png)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+Hovering over the edit icon on the main profile card will bring up a tooltip that says edit
+## Deleting Entries
 
-### `npm run build` fails to minify
+Clicking the delete button from both the entry content page and the main entries list page will remove an entry from the database.. be careful where you click!!
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-# catty-shack
+## Viewing entries by journal
+
+You can browse which entries belong to which journal by clicking on the journal icons in the sidebar on the left. You can also add new entries from this view as well. Once you add an entry from this view, you will be redirected to the previous screen. 
+
+## Adding Journals
+
+You can also add journals by simply clicking the new journal button on the sidebar in the homepage.  This will direct you to the add journal page where you enter a title for your journal and click submit. Easy as that!
+
+
+
+
