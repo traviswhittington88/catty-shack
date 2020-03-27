@@ -54,10 +54,14 @@ Once you've registered you will be automatically redirected to the login page wh
 
 The default user is a pre-designed user profile for a random cat. You can post moews (posts), comment on meows, and like or unlike meows. It's a lot of fun! As the authenticated user of a profile you can also update your bio, check notifications from other users, and reciprocate likes and comments to your fellow felines!
 
+## Edit your profile picture!
+![](src/images/editPicture.png)
 
-## Editing Profile Information
+Just hover over and click the edit icon right below your use profile picture. This triggers a drop-down menu or file explorere window to appear. From there you can change up your pic to something you prefer. ** Word Of Caution ** As of now images are being stored in Heroku's ephemeral image storage. This mean they could be removed anytime so do not expect them to stay. Later on down the road, all images will be store on AWS. More to come on this!
 
-![](src/images/edit.png)
+## Editing Profile Information (Bio, Website, Location)
+
+![](src/images/editDetails.png)
 
 Hovering over the edit icon on the main profile card will bring up a tooltip that says edit
 ## Deleting Entries
