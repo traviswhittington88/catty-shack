@@ -27,7 +27,6 @@ class UserPage extends Component {
   componentDidMount() {
     const user_name = this.props.match.params.user_name;
     const meow_id = this.props.match.params.meow_id;
-    console.log('meow_id_param in URL', meow_id);
 
     if (meow_id) this.setState({ meow_id_param: meow_id, openDialog: true });
 

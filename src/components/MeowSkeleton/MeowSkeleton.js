@@ -7,7 +7,6 @@ import CardContent from '@material-ui/core/CardContent';
 import './MeowSkeleton.css';
 
 export default function MeowSkeleton(props) {
-  console.log('meowSkeleton called');
   const content = Array.from({ length: 5 }).map((item, index) => (
     <Card className='skeletonCard' key={index}>
       <CardMedia className='cover' image={NoImg} />

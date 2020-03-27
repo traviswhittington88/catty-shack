@@ -318,7 +318,6 @@ export default class App extends Component {
   // POST routes
 
   markNotificationsRead = notificationIds => {
-    console.log(notificationIds);
     // mark notifications read in db
     fetch(`${config.API_ENDPOINT}api/users/notifications`, {
       method: 'POST',

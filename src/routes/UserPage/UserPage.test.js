@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import AppContext from '../../contexts/appContext';
-import UserPage from '../UserPage/UserPage';
+import UserPage from './UserPage';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
