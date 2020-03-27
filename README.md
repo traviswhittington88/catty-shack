@@ -90,6 +90,29 @@ It's really fun to post comments on meows. Users can read them and respond with 
 
 ![](src/images/postComment.png)
 
+## Check Your Notifications
+
+If a feline friend happens to like your meows, he or she can like or comment on those posts. You as the owner of the meow will get notified when this happens. The bell icon in the navbar will turn red with the number of notifications you have received. 
+
+
+![](src/images/meowifications.png)
+
+When you click the bell your notifications will be listed in red text. If a notification happens to be a comment you can click the notification and it will open the meow where the comment was posted. If you got a like, that will be shown as well! Once all your "meowifications" have been read, the text will turn blue!
+
+
+![](src/images/notifications2.png)
+
+
+
+## Visit A User's Page
+
+If you are curious who is commenting on your meows then visit another user's main page. Click the user's handle and access their personal meows and information such as bio, location, and website. 
+
+
+![](src/images/userPage2.png)
+
+### Wanna go home? 
+If you need to get back to the homepage just click the yellow kitten icon in the top left corner of the app!
 
 
 
