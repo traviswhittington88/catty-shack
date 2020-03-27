@@ -90,6 +90,15 @@ It's really fun to post comments on meows. Users can read them and respond with 
 
 ![](src/images/postComment.png)
 
+## Visit A User's Page
+
+If you are curious who is commenting on your meows then visit another user's main page. Click the user's handle and access their personal meows and information such as bio, location, and website. 
+
+
+![](src/images/userPage2.png)
+
+### Wanna go home? 
+If you need to get back to the homepage just click the yellow kitten icon in the top left corner of the app!
 
 
 
