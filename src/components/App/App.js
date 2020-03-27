@@ -517,12 +517,15 @@ export default class App extends Component {
             <Router>
               <Switch>
                 <Route exact path='/' component={LandingPage} />
-                <Route exact path='/home' component={HomePage} />{' '}
-                {/* make private later */}
-                <Route path='/login' component={LoginPage} />
-                <Route path='/signup' component={SignupPage} />
-                <Route exact path='/users/:user_name' component={UserPage} />
-                <Route
+                <PrivateRoute exact path='/home' component={HomePage} />{' '}
+                <PublicOnlyRoute path='/login' component={LoginPage} />
+                <PublicOnlyRoute path='/signup' component={SignupPage} />
+                <PrivateRoute
+                  exact
+                  path='/users/:user_name'
+                  component={UserPage}
+                />
+                <PrivateRoute
                   path='/users/:user_name/meows/:meow_id'
                   component={UserPage}
                 />

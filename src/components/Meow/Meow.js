@@ -24,7 +24,6 @@ class Meow extends Component {
   static contextType = AppContext;
 
   render() {
-    console.log('props', this.props.openDialog);
     dayjs.extend(relativeTime);
     const {
       meow: {
