@@ -55,26 +55,41 @@ Once you've registered you will be automatically redirected to the login page wh
 The default user is a pre-designed user profile for a random cat. You can post moews (posts), comment on meows, and like or unlike meows. It's a lot of fun! As the authenticated user of a profile you can also update your bio, check notifications from other users, and reciprocate likes and comments to your fellow felines!
 
 ## Edit your profile picture!
-![](src/images/editPicture.png)
-
+ ![](src/images/editPicture.png)
+ 
 Just hover over and click the edit icon right below your use profile picture. This triggers a drop-down menu or file explorere window to appear. From there you can change up your pic to something you prefer. ** Word Of Caution ** As of now images are being stored in Heroku's ephemeral image storage. This mean they could be removed anytime so do not expect them to stay. Later on down the road, all images will be store on AWS. More to come on this!
 
 ## Editing Profile Information (Bio, Website, Location)
 
 ![](src/images/editDetails.png)
 
-Hovering over the edit icon on the main profile card will bring up a tooltip that says edit
-## Deleting Entries
+Hovering over the edit icon on the main profile card will bring up a tooltip that says `edit user details`. Simply click that button and change your details on the spot. Thanks to React state you see everything update in real time!
 
-Clicking the delete button from both the entry content page and the main entries list page will remove an entry from the database.. be careful where you click!!
+## Posting Meows
+Click the + icon in the navbar and scratch out a new meow! The rest of the Catty Shack community can now comment and like. Just remember, once you post it's fair game!
 
-## Viewing entries by journal
+![](src/images/postMeow.png)
+![](src/images/postMeow2.png)
 
-You can browse which entries belong to which journal by clicking on the journal icons in the sidebar on the left. You can also add new entries from this view as well. Once you add an entry from this view, you will be redirected to the previous screen. 
+## Deleting Meows
 
-## Adding Journals
+Clicking the delete button (trash icon) in the top right corner of the meow card will open a dialog to ensure you really want to delete your meow. 
 
-You can also add journals by simply clicking the new journal button on the sidebar in the homepage.  This will direct you to the add journal page where you enter a title for your journal and click submit. Easy as that!
+![](src/images/deleteMeow.png)
+
+## Like/Unlike Meows
+
+I'm sure most of us have used social media at one point or another, but just for certainty's sake.. Push the heart icon to like and unlike a meow. This will send a notification to the user of the meow that he has a new like! If you remove the like it will also remove his/her notification and they will be none the wiser. Shhhh I won't tell. 
+
+![](src/images/likeUnlike.png)
+
+
+## Post A Comment
+
+It's really fun to post comments on meows. Users can read them and respond with their own likes and comments! To use this feature click the open dialog icon in the top right corner of the meow card. Say what you will and click submit!
+
+![](src/images/postComment.png)
+
 
 
 
