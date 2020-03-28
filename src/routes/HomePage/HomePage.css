@@ -47,6 +47,7 @@
   }
   .profile-card-container {
     order: -1;
+    padding-top: 50px;
   }
 
   .expandButton {
