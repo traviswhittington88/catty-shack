@@ -41,7 +41,7 @@ class Meow extends Component {
       <>
         <div className='card'>
           <img
-            src={require(`${config.API_ENDPOINT}${user_image}`)}
+            src={`${config.API_ENDPOINT}${user_image}`}
             alt='user profile'
             className='meow-image'
           />

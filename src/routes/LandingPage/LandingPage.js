@@ -20,11 +20,7 @@ class LandingPage extends Component {
           <div className='landing-page'>
             <header role='banner' className='showcase'>
               <div className='content'>
-                <img
-                  src={require({ title })}
-                  className='logo'
-                  alt='Catty Shack Inc'
-                />
+                <img src={title} className='logo' alt='Catty Shack Inc' />
                 <div className='title'>Welcome To Catty Shack!</div>
                 <div className='text'>
                   A Purrific Place To Get The Latest Scoop
