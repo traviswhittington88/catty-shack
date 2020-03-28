@@ -20,7 +20,7 @@ export default class Comments extends Component {
                   <Grid container>
                     <Grid item sm={2}>
                       <img
-                        src={`${config.API_ENDPOINT}${user_image}`}
+                        src={require(`${config.API_ENDPOINT}${user_image}`)}
                         alt='comment'
                         className='commentImage'
                       />

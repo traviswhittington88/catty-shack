@@ -46,7 +46,10 @@ export default class Nav extends Component {
       <nav role='navigation' className='nav bg-light'>
         <div className='item name'>
           <Link to='/home' className='title'>
-            <img src={logo} alt='catty shack logo' className='logo'></img>
+            <img
+              src={require({ logo })}
+              alt='catty shack logo'
+              className='logo'></img>
           </Link>
         </div>
         {TokenService.hasAuthToken()

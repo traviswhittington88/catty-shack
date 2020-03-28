@@ -47,7 +47,7 @@ export default class Profile extends Component {
             <>
               <div className='profile-card'>
                 <img
-                  src={`${config.API_ENDPOINT}${this.props.user.user_image}`}
+                  src={require(`${config.API_ENDPOINT}${this.props.user.user_image}`)}
                   alt='profile'
                   className='profile-image'
                 />

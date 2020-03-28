@@ -63,7 +63,7 @@ export default class MeowDialog extends Component {
             <Grid container spacing={10}>
               <Grid item sm={5}>
                 <img
-                  src={`${config.API_ENDPOINT}${value.meow.user_image}`}
+                  src={require(`${config.API_ENDPOINT}${value.meow.user_image}`)}
                   alt='profile'
                   className='profileImage'
                 />
